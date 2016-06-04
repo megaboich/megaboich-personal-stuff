@@ -9,19 +9,19 @@
 Step 1. Create Empty MV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Creating Simple RSS Reader Web application with C# and Asp.Net MVC.">
-<meta property="og:url" content="http://megaboich.github.io/blog/2011/08/12/Creating-Simple-RSS-Reader/index.html">
+<meta property="og:url" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/index.html">
 <meta property="og:site_name" content="A drop in the ocean">
 <meta property="og:description" content="In this article I’ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.
 Step 1. Create Empty MV">
-<meta property="og:image" content="http://megaboich.github.io/blog/blog/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
-<meta property="og:image" content="http://megaboich.github.io/blog/blog/2011/08/12/Creating-Simple-RSS-Reader/5_2.png">
-<meta property="og:image" content="http://megaboich.github.io/blog/blog/2011/08/12/Creating-Simple-RSS-Reader/6_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/5_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/6_2.png">
 <meta property="og:updated_time" content="2016-06-04T16:22:36.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating Simple RSS Reader Web application with C# and Asp.Net MVC.">
 <meta name="twitter:description" content="In this article I’ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.
 Step 1. Create Empty MV">
-<meta name="twitter:image" content="http://megaboich.github.io/blog/blog/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
+<meta name="twitter:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
   
     <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
   
@@ -31,7 +31,7 @@ Step 1. Create Empty MV">
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/blog/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -44,7 +44,7 @@ Step 1. Create Empty MV">
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">A drop in the ocean</a>
+        <a href="/" id="logo">A drop in the ocean</a>
       </h1>
       
     </div>
@@ -52,11 +52,11 @@ Step 1. Create Empty MV">
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/blog/">Home</a>
+          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/blog/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-          <a class="main-nav-link" href="/blog/about">About</a>
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -66,7 +66,7 @@ Step 1. Create Empty MV">
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://megaboich.github.io/blog"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://megaboich.github.io"></form>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@ Step 1. Create Empty MV">
       <div class="outer">
         <section id="main"><article id="post-Creating-Simple-RSS-Reader" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2011/08/12/Creating-Simple-RSS-Reader/" class="article-date">
+    <a href="/2011/08/12/Creating-Simple-RSS-Reader/" class="article-date">
   <time datetime="2011-08-11T22:00:00.000Z" itemprop="datePublished">2011-08-12</time>
 </a>
     
@@ -97,10 +97,10 @@ Step 1. Create Empty MV">
         <p>In this article I’ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.</p>
 <h2 id="Step-1-Create-Empty-MVC-Application"><a href="#Step-1-Create-Empty-MVC-Application" class="headerlink" title="Step 1. Create Empty MVC Application."></a>Step 1. Create Empty MVC Application.</h2><p>First of all use Visual Studio menu “File/New project…” then select Asp.Net MVC3 application template and select “Empty” option. We don’t need all this standard stuff, this simple application will be created from scratch.</p>
 <p>Then, let’s create Home controller with action Index and simple View (using Razor engine).</p>
-<img src="/blog/2011/08/12/Creating-Simple-RSS-Reader/3_2.png" alt="Initial code" title="Initial code">
+<img src="/2011/08/12/Creating-Simple-RSS-Reader/3_2.png" alt="Initial code" title="Initial code">
 <p>Just hit F5 and ensure that browser opens with our empty page titled “Simple RSS Reader”. This is already working Asp.net application; we just need to add functionality to read, parse and show RSS feed. Fast searching in internet shows that there is a great open-source library for .NET named Argotic <a href="http://argotic.codeplex.com/" target="_blank" rel="external">http://argotic.codeplex.com/</a>. Let’s try it and find out how really helpful it is to use 3rd party libraries. Ok, let’s move.</p>
 <h2 id="Step-2-Use-Argotic-Syndication-Framework"><a href="#Step-2-Use-Argotic-Syndication-Framework" class="headerlink" title="Step 2. Use Argotic Syndication Framework."></a>Step 2. Use Argotic Syndication Framework.</h2><p>On the main site of Argotic you can download installation package with full sources, binaries and documentation. Then, you may traditionally copy required binaries to lib folder of your application, then add references, then make changes in Web.config file and/or every place required by component. But in this case I will use NuGet <a href="http://nuget.codeplex.com/" target="_blank" rel="external">http://nuget.codeplex.com/</a>. Thankfully it was already registered Argotic.Web package in the repository, and I will add it from “Manage Nuget Packages” tool dialog (This dialog can be found in Visual Studio main menu “Tools/Library Package Manages/ “).</p>
-<img src="/blog/2011/08/12/Creating-Simple-RSS-Reader/5_2.png" alt="Install NuGet package dialog" title="Install NuGet package dialog">
+<img src="/2011/08/12/Creating-Simple-RSS-Reader/5_2.png" alt="Install NuGet package dialog" title="Install NuGet package dialog">
 <p>Hit Install button, and wait some time while NuGet downloads packages and makes changes in configuration files.</p>
 <p>Then, after reading some very helpful <a href="http://argotic.codeplex.com/wikipage?title=Consuming%20an%20Atom%20feed%20or%20Atom%20entry%20document" target="_blank" rel="external">documentation</a> I was able to create RssReaderService class that serves a feed content model to controller. All 3rd-party invocations are used inside this class.</p>
 <p>The model:</p>
@@ -115,16 +115,16 @@ Step 1. Create Empty MV">
 <p>Also I wrote a little CSS style sheet “Rss.css” to prettify results.</p>
 <p>That’s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let’s show Amazon feed, my url looks like this: <a href="http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso" target="_blank" rel="external">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</a>.</p>
 <p>This is what result page looks like.</p>
-<img src="/blog/2011/08/12/Creating-Simple-RSS-Reader/6_2.png" alt="Result page" title="Result page">
+<img src="/2011/08/12/Creating-Simple-RSS-Reader/6_2.png" alt="Result page" title="Result page">
 <p>The end.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/blog/blog/2011/08/12/Creating-Simple-RSS-Reader/" data-id="cip1ocabb00051sun03emfpzk" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/" data-id="cip1okwxs0003m4un9u1mnf8j" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/RSS/">RSS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSS/">RSS</a></li></ul>
 
     </footer>
   </div>
@@ -132,7 +132,7 @@ Step 1. Create Empty MV">
     
 <nav id="article-nav">
   
-    <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2011/11/07/Creating-OpenSocial-gadget/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -158,7 +158,7 @@ Step 1. Create Empty MV">
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSS/">RSS</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li></ul>
     </div>
   </div>
 
@@ -168,7 +168,7 @@ Step 1. Create Empty MV">
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/blog/tags/C/" style="font-size: 20px;">C#</a> <a href="/blog/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/blog/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/blog/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/blog/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/blog/tags/RSS/" style="font-size: 10px;">RSS</a>
+      <a href="/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/RSS/" style="font-size: 10px;">RSS</a>
     </div>
   </div>
 
@@ -177,7 +177,7 @@ Step 1. Create Empty MV">
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li></ul>
     </div>
   </div>
 
@@ -190,23 +190,23 @@ Step 1. Create Empty MV">
       <ul>
         
           <li>
-            <a href="/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
+            <a href="/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
           </li>
         
           <li>
-            <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
+            <a href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
           </li>
         
           <li>
-            <a href="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
+            <a href="/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
           </li>
         
           <li>
-            <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
+            <a href="/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
           </li>
         
           <li>
-            <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
+            <a href="/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
           </li>
         
       </ul>
@@ -229,11 +229,11 @@ Step 1. Create Empty MV">
     </div>
     <nav id="mobile-nav">
   
-    <a href="/blog/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
-    <a href="/blog/about" class="mobile-nav-link">About</a>
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     
@@ -241,11 +241,11 @@ Step 1. Create Empty MV">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
-  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/blog/js/script.js"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
