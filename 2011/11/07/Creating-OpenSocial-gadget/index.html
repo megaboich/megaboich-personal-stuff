@@ -8,21 +8,21 @@
   <meta name="description" content="OpenSocial is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Creating OpenSocial gadget with Asp.Net MVC">
-<meta property="og:url" content="http://localhost/blog/2011/11/07/Creating-OpenSocial-gadget/index.html">
+<meta property="og:url" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/index.html">
 <meta property="og:site_name" content="A drop in the ocean">
 <meta property="og:description" content="OpenSocial is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/gadgetXml_2.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/LiferayFirstStart_2.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/LifeRayInsertGadgetUrl_2.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/LifeRayWithGadget_2.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/GadgetSettings_2.png">
-<meta property="og:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/Gadget%20on%20iGoogle_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/gadgetXml_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/LiferayFirstStart_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/LifeRayInsertGadgetUrl_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/LifeRayWithGadget_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/GadgetSettings_2.png">
+<meta property="og:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/Gadget%20on%20iGoogle_2.png">
 <meta property="og:updated_time" content="2016-06-04T16:22:36.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating OpenSocial gadget with Asp.Net MVC">
 <meta name="twitter:description" content="OpenSocial is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google">
-<meta name="twitter:image" content="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png">
+<meta name="twitter:image" content="http://localhost/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png">
   
     <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
   
@@ -32,7 +32,7 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/blog/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -45,7 +45,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">A drop in the ocean</a>
+        <a href="/" id="logo">A drop in the ocean</a>
       </h1>
       
     </div>
@@ -53,9 +53,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/blog/">Home</a>
+          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/blog/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
@@ -65,7 +65,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://localhost/blog"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://localhost"></form>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@
       <div class="outer">
         <section id="main"><article id="post-Creating-OpenSocial-gadget" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/" class="article-date">
+    <a href="/2011/11/07/Creating-OpenSocial-gadget/" class="article-date">
   <time datetime="2011-11-06T23:00:00.000Z" itemprop="datePublished">2011-11-07</time>
 </a>
     
@@ -121,7 +121,7 @@
 <p>And view:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@model SimpleRssReader.Models.RssFeedContent</span><br><span class="line">@&#123;</span><br><span class="line">	Layout = <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"items"</span> data-title=<span class="string">"@Model.FeedTitle"</span>&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">	@<span class="keyword">foreach</span> (<span class="keyword">var</span> rssItem <span class="keyword">in</span> Model.Articles)</span><br><span class="line">	&#123;</span><br><span class="line">		&lt;li&gt;</span><br><span class="line">			&lt;h2&gt;</span><br><span class="line">				&lt;a href=<span class="string">"@rssItem.Link"</span> target=<span class="string">"_blank"</span>&gt;</span><br><span class="line">					@<span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(rssItem.TitleImage))</span><br><span class="line">					&#123; </span><br><span class="line">						&lt;img src=<span class="string">"@rssItem.TitleImage"</span> onload=<span class="string">"$('body').trigger('imageLoad');"</span> /&gt;</span><br><span class="line">					&#125;</span><br><span class="line">					@rssItem.Title</span><br><span class="line">				&lt;/a&gt;</span><br><span class="line">			&lt;/h2&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>At this point after compiling and fixing some minor problems there should be available working widget at url like this : <a href="http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10">http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</a></p>
-<p>And you should get view like this:<br><img src="/blog/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png" alt="View of the widget in the browser" title="View of the widget in the browser"></p>
+<p>And you should get view like this:<br><img src="/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png" alt="View of the widget in the browser" title="View of the widget in the browser"></p>
 <h2 id="Create-Gadget-XML"><a href="#Create-Gadget-XML" class="headerlink" title="Create Gadget XML."></a>Create Gadget XML.</h2><p>OpenSocial Gadget should be described in XML according to specification. To achieve this let’s create Controller and View.</p>
 <p>Controller code:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Web;</span><br><span class="line"><span class="keyword">using</span> System.Web.Mvc;</span><br><span class="line"><span class="keyword">using</span> SimpleRssReader.Models;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">SimpleRssReader.Controllers</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OpenSocialController</span> : <span class="title">Controller</span></span><br><span class="line">	&#123;</span><br><span class="line">		[HttpGet]</span><br><span class="line">		<span class="function"><span class="keyword">public</span> ActionResult <span class="title">RssFeedGadget</span>(<span class="params"></span><br><span class="line">			<span class="keyword">string</span> feed = <span class="string">"http://news.google.com/news?topic=b&amp;output=rss"</span>,</span><br><span class="line">			<span class="keyword">int</span> top = <span class="number">10</span></span>)</span><br><span class="line">		</span>&#123;</span><br><span class="line">			ViewBag.FeedSource = feed;</span><br><span class="line">			ViewBag.TopCount = top;</span><br><span class="line">			<span class="keyword">return</span> View(<span class="string">"RssFeedGadget"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -129,15 +129,15 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">using</span> System;</span><br><span class="line">@&#123;</span><br><span class="line">	Layout = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;Module&gt;</span><br><span class="line">	&lt;ModulePrefs title=<span class="string">"Rss Feed Widget"</span> author=<span class="string">"Oleksandr Boiko"</span> author_email=<span class="string">"mega.boich@gmail.com"</span> height=<span class="string">"160"</span>&gt;</span><br><span class="line">		&lt;Require feature=<span class="string">"opensocial-0.9"</span> /&gt;</span><br><span class="line">		&lt;Require feature=<span class="string">"dynamic-height"</span>/&gt;</span><br><span class="line">		&lt;Require feature=<span class="string">"settitle"</span>/&gt;</span><br><span class="line">	&lt;/ModulePrefs&gt;</span><br><span class="line">	&lt;UserPref name=<span class="string">"feedSource"</span> display_name=<span class="string">"Feed Source"</span> default_value=<span class="string">"http://news.google.com/news?topic=b&amp;amp;output=rss"</span>/&gt;</span><br><span class="line">	&lt;UserPref name=<span class="string">"topCount"</span> display_name=<span class="string">"Top Count"</span> default_value=<span class="string">"10"</span>/&gt;</span><br><span class="line">	&lt;Content type=<span class="string">"html"</span>&gt;</span><br><span class="line">&lt;![CDATA[</span><br><span class="line">	@Html.Action(<span class="string">"Widget"</span>, <span class="string">"RssReader"</span>, <span class="keyword">new</span> &#123; feedUrl = ViewBag.FeedSource, topCount = ViewBag.TopCount &#125;)</span><br><span class="line">]]&gt;</span><br><span class="line">	&lt;/Content&gt;</span><br><span class="line">&lt;/Module&gt;</span><br><span class="line">@&#123;</span><br><span class="line">	Response.ContentType = <span class="string">"text/xml"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>This is OpenSocial Gadget Xml, and it contains all information to render gadget in container. Google have good <a href="http://code.google.com/intl/uk-UA/apis/gadgets/docs/gs.html" target="_blank" rel="external">documentation</a> about this. In ModulePrefs section located copyright attributes and required features. UserPref sections contains user preferences that will be available to user. Access to this preferences is performed via OpenSocial Javascript API in WidgetHelper.js. Section Content is the container for HTML, CSS, Javascript. Here goes rendering of the Widget action.</p>
 <p>So, now you should have a working gadget XML available at url like this: <a href="http://localhost/reader/OpenSocial/RssFeedGadget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10">http://localhost/reader/OpenSocial/RssFeedGadget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</a></p>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/gadgetXml_2.png" alt="View of the widget XML" title="View of the widget XML">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/gadgetXml_2.png" alt="View of the widget XML" title="View of the widget XML">
 <h2 id="Deploy-gadget-to-container"><a href="#Deploy-gadget-to-container" class="headerlink" title="Deploy gadget to container."></a>Deploy gadget to container.</h2><p><a href="http://www.liferay.com/downloads/liferay-portal/available-releases" target="_blank" rel="external">LifeRay</a> portal is a good choice in order to test OpenSocial gadgets. Though it written in Java this product is easy to install and run. You should have Java virtual machine on your test computer in order to run this portal. To install just extract zip archive and run \liferay-portal-6.1.0\tomcat-7.0.21\bin\startup.bat. Then tomcat web server will be run on port 8080 by default with Liferay portal. Looks impressive.</p>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/LiferayFirstStart_2.png" alt="View of the LifeRay portal" title="View of the LifeRay portal">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/LiferayFirstStart_2.png" alt="View of the LifeRay portal" title="View of the LifeRay portal">
 <p>To add our fresh OpenSocial gadget to portal first login to LifeRay under administrator account. There are special quick login links o the main page. Press “Login as Bruno”. Then find menu in the top “Add”-&gt;”More”-&gt;”Install More Applications”. Scroll down, find “Open Social” link and click. Page should look similar to this:</p>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/LifeRayInsertGadgetUrl_2.png" alt="View of the LifeRay Insert Gadget UI" title="View of the LifeRay Insert Gadget UI">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/LifeRayInsertGadgetUrl_2.png" alt="View of the LifeRay Insert Gadget UI" title="View of the LifeRay Insert Gadget UI">
 <p>Insert url to Rss gadget, press “Save”. Okay, now add gadget to the page. To achieve this navigate to main page or whatever page you like and select in top menu “Add”-&gt;”More”-&gt;”Gadgets”-&gt;”Rss Feed Widget”. Gadget should be added to page.</p>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/LifeRayWithGadget_2.png" alt="View of the LifeRay with our gadget" title="View of the LifeRay with our gadget">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/LifeRayWithGadget_2.png" alt="View of the LifeRay with our gadget" title="View of the LifeRay with our gadget">
 <p>Just what we need. Also, in gadget menu there are available option “Configuration”.</p>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/GadgetSettings_2.png" alt="View of the LifeRay with configuration" title="View of the LifeRay with configuration">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/GadgetSettings_2.png" alt="View of the LifeRay with configuration" title="View of the LifeRay with configuration">
 <p>There are our gadget preferences, and they are managed by Liferay Container. We get access to this values via OpenSocial javascript API in WidgetHelper.js.</p>
 <p>Also as a little surprise you can find out that our gadget is fully compatible with iGoogle gadgets, and you can add it to iGoogle page. To perform this you must follow next steps:</p>
 <ol>
@@ -145,17 +145,17 @@
 <li>Ensure that application deployed correctly and gadget XML is available by public Url.</li>
 <li>Go to <a href="http://www.google.com/ig" target="_blank" rel="external">http://www.google.com/ig</a> then login, press “Add gadgets” red button, on the next page in left bottom corner find “Add feed or gadget”. Then enter url for your gadget XML and confirm your action.</li>
 </ol>
-<img src="/blog/2011/11/07/Creating-OpenSocial-gadget/Gadget%20on%20iGoogle_2.png" alt="iGoogle with our gadget" title="iGoogle with our gadget">
+<img src="/2011/11/07/Creating-OpenSocial-gadget/Gadget%20on%20iGoogle_2.png" alt="iGoogle with our gadget" title="iGoogle with our gadget">
 <p>All sources are available at <a href="https://bitbucket.org/megaboich/simplerssreader" target="_blank" rel="external">BitBucket</a>.</p>
 <p>Enjoy.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://localhost/blog/blog/2011/11/07/Creating-OpenSocial-gadget/" data-id="cip1iiq4z000134uncpek94zb" class="article-share-link">Share</a>
+      <a data-url="http://localhost/2011/11/07/Creating-OpenSocial-gadget/" data-id="cip1npevq000bf4un3dtco9o6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/OpenSocial/">OpenSocial</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSocial/">OpenSocial</a></li></ul>
 
     </footer>
   </div>
@@ -163,7 +163,7 @@
     
 <nav id="article-nav">
   
-    <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2012/03/02/Diff-Merge-Tool-Selector/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -173,7 +173,7 @@
     </a>
   
   
-    <a href="/blog/2011/08/12/Creating-Simple-RSS-Reader/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2011/08/12/Creating-Simple-RSS-Reader/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Creating Simple RSS Reader Web application with C# and Asp.Net MVC.</div>
     </a>
@@ -194,7 +194,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSS/">RSS</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSS/">RSS</a></li></ul>
     </div>
   </div>
 
@@ -204,7 +204,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/blog/tags/C/" style="font-size: 20px;">C#</a> <a href="/blog/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/blog/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/blog/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/blog/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/blog/tags/RSS/" style="font-size: 10px;">RSS</a>
+      <a href="/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/RSS/" style="font-size: 10px;">RSS</a>
     </div>
   </div>
 
@@ -213,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li></ul>
     </div>
   </div>
 
@@ -226,23 +226,23 @@
       <ul>
         
           <li>
-            <a href="/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
+            <a href="/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
           </li>
         
           <li>
-            <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
+            <a href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
           </li>
         
           <li>
-            <a href="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
+            <a href="/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
           </li>
         
           <li>
-            <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
+            <a href="/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
           </li>
         
           <li>
-            <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
+            <a href="/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
           </li>
         
       </ul>
@@ -265,9 +265,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/blog/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
@@ -275,11 +275,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
-  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/blog/js/script.js"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
