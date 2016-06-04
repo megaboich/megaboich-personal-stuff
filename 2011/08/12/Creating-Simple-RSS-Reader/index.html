@@ -9,19 +9,19 @@
 Step 1. Create Empty MV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Creating Simple RSS Reader Web application with C# and Asp.Net MVC.">
-<meta property="og:url" content="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/index.html">
+<meta property="og:url" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/index.html">
 <meta property="og:site_name" content="A drop in the ocean">
 <meta property="og:description" content="In this article I’ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.
 Step 1. Create Empty MV">
-<meta property="og:image" content="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
-<meta property="og:image" content="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/5_2.png">
-<meta property="og:image" content="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/6_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/5_2.png">
+<meta property="og:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/6_2.png">
 <meta property="og:updated_time" content="2016-06-04T16:22:36.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Creating Simple RSS Reader Web application with C# and Asp.Net MVC.">
 <meta name="twitter:description" content="In this article I’ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.
 Step 1. Create Empty MV">
-<meta name="twitter:image" content="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
+<meta name="twitter:image" content="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/3_2.png">
   
     <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
   
@@ -64,7 +64,7 @@ Step 1. Create Empty MV">
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://localhost"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://megaboich.github.io"></form>
       </div>
     </div>
   </div>
@@ -111,7 +111,7 @@ Step 1. Create Empty MV">
 <p>And view:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@model SimpleRssReader.Models.RssFeedContent</span><br><span class="line">@&#123;</span><br><span class="line">	Layout = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;@Model.FeedTitle&lt;/title&gt;</span><br><span class="line">	&lt;link href=<span class="string">"@Url.Content("</span>~/Content/Rss.css<span class="string">")"</span> rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=<span class="string">"items"</span>&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">	@<span class="keyword">foreach</span> (<span class="keyword">var</span> rssItem <span class="keyword">in</span> Model.Articles)</span><br><span class="line">	&#123;</span><br><span class="line">		&lt;li&gt;</span><br><span class="line">			&lt;h2&gt;</span><br><span class="line">				&lt;a href=<span class="string">"@rssItem.Link"</span>&gt;@rssItem.Title&lt;/a&gt;</span><br><span class="line">			&lt;/h2&gt;</span><br><span class="line">			&lt;p&gt;</span><br><span class="line">				@rssItem.PublicationDate.ToLongDateString()</span><br><span class="line">				@rssItem.Author</span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			&lt;div&gt;</span><br><span class="line">				@Html.Raw(rssItem.Content)</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p>Also I wrote a little CSS style sheet “Rss.css” to prettify results.</p>
-<p>That’s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let’s show Amazon feed, my url looks like this: <a href="http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</a>.</p>
+<p>That’s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let’s show Amazon feed, my url looks like this: <a href="http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso" target="_blank" rel="external">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</a>.</p>
 <p>This is what result page looks like.</p>
 <img src="/2011/08/12/Creating-Simple-RSS-Reader/6_2.png" alt="Result page" title="Result page">
 <p>The end.</p>
@@ -119,7 +119,7 @@ Step 1. Create Empty MV">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://localhost/2011/08/12/Creating-Simple-RSS-Reader/" data-id="cip1npeuv0000f4un45oml63e" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/" data-id="cip1ntgcw0007xgunzfsk2blk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSS/">RSS</a></li></ul>
