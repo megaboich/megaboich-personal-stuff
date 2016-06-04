@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PowerShell View Engine - Asp style | A drop in the ocean</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:
+
+Views stores separat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerShell View Engine - Asp style">
+<meta property="og:url" content="http://localhost/blog/2012/08/06/PowerShell-View-Engine-Asp-style/index.html">
+<meta property="og:site_name" content="A drop in the ocean">
+<meta property="og:description" content="Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:
+
+Views stores separat">
+<meta property="og:image" content="http://localhost/blog/blog/2012/08/06/PowerShell-View-Engine-Asp-style/image_2.png">
+<meta property="og:image" content="http://localhost/blog/blog/2012/08/06/PowerShell-View-Engine-Asp-style/image_4.png">
+<meta property="og:updated_time" content="2016-06-04T16:22:36.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PowerShell View Engine - Asp style">
+<meta name="twitter:description" content="Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:
+
+Views stores separat">
+<meta name="twitter:image" content="http://localhost/blog/blog/2012/08/06/PowerShell-View-Engine-Asp-style/image_2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">A drop in the ocean</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://localhost/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PowerShell-View-Engine-Asp-style" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/" class="article-date">
+  <time datetime="2012-08-05T22:00:00.000Z" itemprop="datePublished">2012-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PowerShell View Engine - Asp style
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:</p>
+<ol>
+<li>Views stores separately from code in Html files.</li>
+<li>Support of nested Views, inline PowerShell code.</li>
+<li>Using Asp-style separators &lt;%…%&gt;.</li>
+<li>Works everywhere, only PowerShell 2.0 is required without additional tweaks.</li>
+</ol>
+<p>First of all I was trying to find something already implemented, but with bad luck. Someone tries Razor engine, but this is very complicated and requires additional tweaks. Someone indeed implemented their own engines, but with some custom syntax and with poor functionality. So when a bright idea came into my mind I implemented my own view engine.</p>
+<p>Here is screenshot of view to use with my engine.</p>
+<img src="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/image_2.png" alt="Sample view" title="Sample view">
+<h4 id="Implemetation"><a href="#Implemetation" class="headerlink" title="Implemetation"></a>Implemetation</h4><p>When I first was discovering PowerShell I was thrilled by inline string PowerShell evaluation functionality. For example your expression:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$test</span> = <span class="string">"&lt;div&gt; $(<span class="variable">$env:COMPUTERNAME</span>)&lt;/div&gt;"</span></span><br></pre></td></tr></table></figure>
+<p>Will be evaluated at runtime to something like this:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>MYCOMPUTER<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>This is indeed very simple View Engine right out of the box. With it you can build complicated template like this:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$Model</span> = @&#123;&#125;    </span><br><span class="line"><span class="variable">$Model</span>.Title = <span class="string">'Hello, this is a test'</span></span><br><span class="line"><span class="variable">$Model</span>.Clients = @(<span class="string">'Ivan'</span>, <span class="string">'Sergiy'</span>, <span class="string">'John'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#view render method 1 - embedded powershell string evaluation</span></span><br><span class="line"><span class="variable">$html</span> = <span class="string">"</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	$(<span class="variable">$Model</span>.Title)</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line">&lt;div class="</span><span class="string">"test"</span><span class="string">"&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		$( foreach(<span class="variable">$client</span> in <span class="variable">$Model</span>.Clients) &#123;"</span></span><br><span class="line">		&lt;li&gt;</span><br><span class="line">			$( <span class="variable">$client</span> )</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">		<span class="string">"&#125;)</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;"</span></span><br><span class="line"><span class="built_in">Write-Host</span> <span class="variable">$html</span></span><br></pre></td></tr></table></figure>
+<p>As you can see PowerShell parser is able to distinguish nested language expressions inside $() blocks, and this is extremely useful for implementation of loops and if-then statements.</p>
+<p>This method is ready for use for small templates, but it has some cons:</p>
+<ol>
+<li>View markup is included in code, rather than separate file.</li>
+<li>Nested views not supported.</li>
+<li>Syntax is complicated, when you miss ),} or “ it is hard to find where the problem is.</li>
+<li>You need to encode double quotes.</li>
+</ol>
+<p>Ok, first two problems can be solved with next function:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> RenderViewNativePowerShell(</span><br><span class="line">	[Parameter(Mandatory=<span class="literal">$true</span>)][string] <span class="variable">$viewName</span>,</span><br><span class="line">	[Parameter(Mandatory=<span class="literal">$true</span>)][Object] <span class="variable">$model</span></span><br><span class="line">)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable">$viewFileName</span> = <span class="built_in">Resolve-Path</span> (<span class="string">'Views\'</span> + <span class="variable">$viewName</span>)</span><br><span class="line">	<span class="variable">$templateContent</span> = <span class="built_in">Get-Content</span> <span class="variable">$viewFileName</span> | <span class="built_in">Out-String</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$ExecutionContext</span>.InvokeCommand.ExpandString(<span class="string">'"'</span> + <span class="variable">$templateContent</span> + <span class="string">'"'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It loads template from file and then uses the PowerShell string evaluation on it. (It was hard to find this function in language reference).</p>
+<p>This function can be called this way:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#view render method 2 - templates powershell evaluation</span></span><br><span class="line">RenderViewNativePowerShell <span class="string">'Test_ps.html'</span> <span class="variable">$Model</span></span><br></pre></td></tr></table></figure>
+<p>It supports nested views, take a look at view ‘test_ps.html’</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$( RenderViewNativePowerShell <span class="string">'header_ps.html'</span> <span class="variable">$Model</span> )</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">""</span>test<span class="string">""</span>&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		 $( <span class="keyword">foreach</span>(<span class="variable">$client</span> <span class="keyword">in</span> <span class="variable">$Model</span>.Clients) &#123;<span class="string">"</span><br><span class="line">			&lt;li&gt;</span><br><span class="line">				$( <span class="variable">$client</span> )</span><br><span class="line">			&lt;/li&gt;</span><br><span class="line">		"</span>&#125;)</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>Ok, this is already very useful implementation, but what about using Asp-like &lt;%… %&gt;formatting? This special closures has support in many specialized text editors and very convenient for many people. So, next idea was simply replace Asp &lt;%…%&gt;braces to its PowerShell equivalents $(…). But this was not so simple because PowerShell syntax needs to be different in cases when nested code blocks used.</p>
+<p>After some struggling I was able to implement Regex parsing expression and intelligent replace logic. Here it is:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> RenderView(</span><br><span class="line">	[Parameter(Mandatory=<span class="literal">$true</span>)][string] <span class="variable">$viewName</span>,</span><br><span class="line">	[Parameter(Mandatory=<span class="literal">$true</span>)][Object] <span class="variable">$model</span></span><br><span class="line">)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable">$viewFileName</span> = <span class="built_in">Resolve-Path</span> (<span class="string">'Views\'</span> + <span class="variable">$viewName</span>)</span><br><span class="line">	<span class="variable">$templateContent</span> = <span class="built_in">Get-Content</span> <span class="variable">$viewFileName</span> | <span class="built_in">Out-String</span></span><br><span class="line">	</span><br><span class="line">	<span class="variable">$rx</span> = <span class="built_in">New-Object</span> System.Text.RegularExpressions.Regex(<span class="string">'(&lt;%.*?%&gt;)'</span>, [System.Text.RegularExpressions.RegexOptions]::Singleline)</span><br><span class="line">	<span class="variable">$res</span> = @()</span><br><span class="line">	<span class="variable">$splitted</span> = <span class="variable">$rx</span>.Split(<span class="variable">$templateContent</span>);</span><br><span class="line">	<span class="keyword">foreach</span>(<span class="variable">$part</span> <span class="keyword">in</span> <span class="variable">$splitted</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable">$part</span>.StartsWith(<span class="string">'&lt;%'</span>) -and <span class="variable">$part</span>.EndsWith(<span class="string">'%&gt;'</span>)) <span class="comment">#transform &lt;%...%&gt; blocks</span></span><br><span class="line">		&#123;    </span><br><span class="line">			<span class="variable">$expr</span> = <span class="variable">$part</span>.Substring(<span class="number">2</span>, <span class="variable">$part</span>.Length-<span class="number">4</span>) <span class="comment">#remove &lt;%%&gt;</span></span><br><span class="line">			<span class="variable">$normExpr</span> = <span class="variable">$expr</span>.Replace(<span class="string">'`n'</span>,<span class="string">''</span>).Replace(<span class="string">'`r'</span>,<span class="string">''</span>).Trim();</span><br><span class="line">			</span><br><span class="line">			<span class="variable">$startClosure</span> = <span class="string">'$('</span></span><br><span class="line">			<span class="variable">$endClosure</span> = <span class="string">')'</span></span><br><span class="line">			<span class="keyword">if</span> (<span class="variable">$normExpr</span>.EndsWith(<span class="string">'&#123;'</span>)) &#123;</span><br><span class="line">				<span class="variable">$endClosure</span> = <span class="string">'"'</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable">$normExpr</span>.StartsWith(<span class="string">'&#125;'</span>)) &#123;</span><br><span class="line">				<span class="variable">$startClosure</span> = <span class="string">'"'</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="variable">$res</span> += @(<span class="variable">$startClosure</span> + <span class="variable">$expr</span> + <span class="variable">$endClosure</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="comment">#encode text blocks</span></span><br><span class="line">		&#123;    </span><br><span class="line">			<span class="variable">$expr</span> = <span class="variable">$part</span>.Replace(<span class="string">'"'</span>, <span class="string">'""'</span>);</span><br><span class="line">			<span class="variable">$res</span> += @(<span class="variable">$expr</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$viewExpr</span> = <span class="variable">$res</span> -join <span class="string">''</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$ExecutionContext</span>.InvokeCommand.ExpandString(<span class="string">'"'</span> + <span class="variable">$viewExpr</span> + <span class="string">'"'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This code also replaces “ to “”, so it is ready for Html views.</p>
+<p>Here is screenshot from Visual Studio:</p>
+<img src="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/image_4.png" alt="View in Visual Studio" title="View in Visual Studio">
+<p>Looks nice.</p>
+<p>All source code with samples and tests you can find on <a href="https://github.com/megaboich/PowerShellViewEngine" target="_blank" rel="external">GitHub</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://localhost/blog/blog/2012/08/06/PowerShell-View-Engine-Asp-style/" data-id="cip1iiq5c000434un46wgcp2m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Powershell/">Powershell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Javascript implementation of custom A* algorithm
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Diff Merge Tool Selector</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSS/">RSS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/blog/tags/C/" style="font-size: 20px;">C#</a> <a href="/blog/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/blog/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/blog/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/blog/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/blog/tags/RSS/" style="font-size: 10px;">RSS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Oleksandr Boiko<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

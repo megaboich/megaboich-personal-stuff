@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Setting up Git-Svn from very beginning | A drop in the ocean</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.
+Create GIT repositoryFirst of all it is necessary to init GIT repository, clone it from SV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting up Git-Svn from very beginning">
+<meta property="og:url" content="http://localhost/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/index.html">
+<meta property="og:site_name" content="A drop in the ocean">
+<meta property="og:description" content="This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.
+Create GIT repositoryFirst of all it is necessary to init GIT repository, clone it from SV">
+<meta property="og:updated_time" content="2016-06-04T16:22:36.986Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setting up Git-Svn from very beginning">
+<meta name="twitter:description" content="This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.
+Create GIT repositoryFirst of all it is necessary to init GIT repository, clone it from SV">
+  
+    <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">A drop in the ocean</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://localhost/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Setting-Up-Git-Svn-From-Very-Beginning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" class="article-date">
+  <time datetime="2016-04-01T22:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Setting up Git-Svn from very beginning
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.</p>
+<h2 id="Create-GIT-repository"><a href="#Create-GIT-repository" class="headerlink" title="Create GIT repository"></a>Create GIT repository</h2><p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.<br>First of all you need to decide at which starting point you want to have history.<br>Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.<br>First of all we need to check out repository at specific version.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># checkout a specific revision 217000 which dated October 23, 2014</span><br><span class="line">git svn clone -r 217000 http://url-to-your-svn-repo</span><br></pre></td></tr></table></figure>
+<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.<br>Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
+<p>One more command is to generate .gitignore file from SVN settings.<br>This step might be not necessary because you probably not the first one running this procedure.<br>So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn show-ignore &gt; .gitignore</span><br></pre></td></tr></table></figure>
+<h2 id="Working-on-everyday-basis"><a href="#Working-on-everyday-basis" class="headerlink" title="Working on everyday basis"></a>Working on everyday basis</h2><p>Ok, after you created GIT repository you can work with it in any way you want.<br>It is very enjoyable to create as many local branches as you want and fast switching between them.<br>There are many ways to work with Git and this is not a topic of this article.<br>After finishing your work you should merge all changes to ‘git-svn’ branch and execute</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn dcommit</span><br></pre></td></tr></table></figure>
+<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.<br>In this case you need to pull latest code from SVN.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
+<h2 id="SVN-externals"><a href="#SVN-externals" class="headerlink" title="SVN externals"></a>SVN externals</h2><p>Workaround: to get svn externals working in git it is possible to get list of all externals via command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn propget svn:externals -R</span><br></pre></td></tr></table></figure>
+<p>Then you can execute simple powershell script that downloads files from svn to your git repository.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Write-host &apos;Update svn externals. Version 0.0.1&apos;</span><br><span class="line">$ext = </span><br><span class="line">    @(</span><br><span class="line">        (&quot;build&quot;, &quot;url-to-svn-repo&quot;),</span><br><span class="line">        (&quot;AutomatedTestScripts\TestServer\Platform&quot;, &quot;url-to-another-svn-repo&quot;),</span><br><span class="line">        ...</span><br><span class="line">        (&quot;Platform\PlatformSDK&quot;,&quot;url-to-yet-another-svn-repo&quot;)</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">$currentLocation = Split-Path -parent $MyInvocation.MyCommand.Definition</span><br><span class="line">$projectRoot = $currentLocation + &apos;\..\..\&apos;</span><br><span class="line">    </span><br><span class="line">Write-Host &quot;R:$projectRoot&quot;</span><br><span class="line">    </span><br><span class="line">foreach($e in $ext)&#123;</span><br><span class="line">    $folder = $projectRoot + $e[0];</span><br><span class="line">    $svnPath = $e[1];</span><br><span class="line">    </span><br><span class="line">    Write-Host &quot;======&quot;</span><br><span class="line">    Write-Host $folder </span><br><span class="line">    Write-Host $svnPath</span><br><span class="line">    </span><br><span class="line">    svn export --force &quot;$svnPath&quot; &quot;$folder&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And if you don’t want to see all these files in uncommited state you shoud add them to your .gitignore file.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://localhost/blog/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" data-id="cip1iiq5k000634un806n35t6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GIT-SVN/">GIT SVN</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Javascript implementation of custom A* algorithm</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/GIT-SVN/">GIT SVN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/OpenSocial/">OpenSocial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Powershell/">Powershell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/RSS/">RSS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Asp-Net-MVC/" style="font-size: 20px;">Asp.Net MVC</a> <a href="/blog/tags/C/" style="font-size: 20px;">C#</a> <a href="/blog/tags/GIT-SVN/" style="font-size: 10px;">GIT SVN</a> <a href="/blog/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/blog/tags/OpenSocial/" style="font-size: 10px;">OpenSocial</a> <a href="/blog/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/blog/tags/RSS/" style="font-size: 10px;">RSS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2013/06/">June 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2011/08/">August 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/">Setting up Git-Svn from very beginning</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/">Javascript implementation of custom A* algorithm</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/08/06/PowerShell-View-Engine-Asp-style/">PowerShell View Engine - Asp style</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2012/03/02/Diff-Merge-Tool-Selector/">Diff Merge Tool Selector</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2011/11/07/Creating-OpenSocial-gadget/">Creating OpenSocial gadget with Asp.Net MVC</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Oleksandr Boiko<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>
