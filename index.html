@@ -25,6 +25,19 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70363755-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -89,15 +102,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.</p>
-<h2 id="Create-GIT-repository"><a href="#Create-GIT-repository" class="headerlink" title="Create GIT repository"></a>Create GIT repository</h2><p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.<br>First of all you need to decide at which starting point you want to have history.<br>Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.<br>First of all we need to check out repository at specific version.</p>
+<h2 id="Create-GIT-repository"><a href="#Create-GIT-repository" class="headerlink" title="Create GIT repository"></a>Create GIT repository</h2><p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.
+First of all you need to decide at which starting point you want to have history.
+Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.
+First of all we need to check out repository at specific version.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># checkout a specific revision 217000 which dated October 23, 2014</span><br><span class="line">git svn clone -r 217000 http://url-to-your-svn-repo</span><br></pre></td></tr></table></figure>
-<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.<br>Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
+<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.
+Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
-<p>One more command is to generate .gitignore file from SVN settings.<br>This step might be not necessary because you probably not the first one running this procedure.<br>So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
+<p>One more command is to generate .gitignore file from SVN settings.
+This step might be not necessary because you probably not the first one running this procedure.
+So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn show-ignore &gt; .gitignore</span><br></pre></td></tr></table></figure>
-<h2 id="Working-on-everyday-basis"><a href="#Working-on-everyday-basis" class="headerlink" title="Working on everyday basis"></a>Working on everyday basis</h2><p>Ok, after you created GIT repository you can work with it in any way you want.<br>It is very enjoyable to create as many local branches as you want and fast switching between them.<br>There are many ways to work with Git and this is not a topic of this article.<br>After finishing your work you should merge all changes to ‘git-svn’ branch and execute</p>
+<h2 id="Working-on-everyday-basis"><a href="#Working-on-everyday-basis" class="headerlink" title="Working on everyday basis"></a>Working on everyday basis</h2><p>Ok, after you created GIT repository you can work with it in any way you want.
+It is very enjoyable to create as many local branches as you want and fast switching between them.
+There are many ways to work with Git and this is not a topic of this article.
+After finishing your work you should merge all changes to ‘git-svn’ branch and execute</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn dcommit</span><br></pre></td></tr></table></figure>
-<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.<br>In this case you need to pull latest code from SVN.</p>
+<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.
+In this case you need to pull latest code from SVN.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
 <h2 id="SVN-externals"><a href="#SVN-externals" class="headerlink" title="SVN externals"></a>SVN externals</h2><p>Workaround: to get svn externals working in git it is possible to get list of all externals via command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn propget svn:externals -R</span><br></pre></td></tr></table></figure>
@@ -108,7 +131,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" data-id="cipohg68i0002u8unobr9qqjv" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" data-id="ciqo8ltej0008zwundbo338xs" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIT-SVN/">GIT SVN</a></li></ul>
@@ -142,22 +167,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.<br>For me it was a problem of finding a way through the maze.<br>So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms<br>and one of those is A-Star.<br>After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003" target="_blank" rel="external">A-Star Pathfinding for Beginners</a>).<br>My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
+        <p>Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms
+and one of those is A-Star.
+After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003" target="_blank" rel="external">A-Star Pathfinding for Beginners</a>).
+My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
 <p>So, here are the rules:</p>
 <ul>
 <li>Double click on the cells to build walls</li>
 <li>Select cell, then press “Set Start” or “Set Finish” buttons to change start/destination point</li>
 </ul>
-<div><br>  <link rel="stylesheet" href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/styles.css"><br><br>  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button><br>  <span class="input-group-addon">Width</span><br>  <input id="field-width" type="text" class="form-control" value="10"><br>  <span class="input-group-addon">Height</span><br>  <input id="field-height" type="text" class="form-control" value="10"><br><br>  <div class="panel panel-default"><br>    <div class="panel-body"><br>      <div id="field-container"><br>      </div><br>    </div><br>  </div>
+<div>
+  <link rel="stylesheet" href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/styles.css">
 
-  <button id="set-start-btn" class="btn btn-default">Set Start</button><br>  <button id="set-finish-btn" class="btn btn-default">Set Finish</button><br>  <button id="go-btn" class="btn btn-success">Go!</button>
+  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button>
+  <span class="input-group-addon">Width</span>
+  <input id="field-width" type="text" class="form-control" value="10">
+  <span class="input-group-addon">Height</span>
+  <input id="field-height" type="text" class="form-control" value="10">
 
-<p>  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/a-star-algorithm.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/field-designer.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/run.js"></script><br></p></div><p></p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="field-container">
+      </div>
+    </div>
+  </div>
+
+  <button id="set-start-btn" class="btn btn-default">Set Start</button>
+  <button id="set-finish-btn" class="btn btn-default">Set Finish</button>
+  <button id="go-btn" class="btn btn-success">Go!</button>
+
+<p>  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/a-star-algorithm.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/field-designer.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/run.js"></script>
+</p></div><p></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" data-id="cipohg68s0003u8un6hwe014r" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" data-id="ciqo8ltel0009zwunv1uhi6kk" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -234,7 +286,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2012/08/06/PowerShell-View-Engine-Asp-style/" data-id="cipohg6920008u8undp5xum0w" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2012/08/06/PowerShell-View-Engine-Asp-style/" data-id="ciqo8ltdv0006zwunjgoq156v" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2012/08/06/PowerShell-View-Engine-Asp-style/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Powershell/">Powershell</a></li></ul>
@@ -268,7 +322,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>DiffMergeSelector might be a helpful tool in case you have several favorite diff/merge tools. It works like “proxy” between your diff tools and your IDE, SVN, Git, Mercurial or any other development tool.<br>For example you can configure Tortoise SVN to use DiffMergeSelector as external merge tool:</p>
+        <p>DiffMergeSelector might be a helpful tool in case you have several favorite diff/merge tools. It works like “proxy” between your diff tools and your IDE, SVN, Git, Mercurial or any other development tool.
+For example you can configure Tortoise SVN to use DiffMergeSelector as external merge tool:</p>
 <img src="/2012/03/02/Diff-Merge-Tool-Selector/svn-settings.png" alt="Tortoise SVN Settings" title="Tortoise SVN Settings">
 <p>Then each time when you launch diff from Tortoise SVN you will get something like this:</p>
 <img src="/2012/03/02/Diff-Merge-Tool-Selector/main_2.png" alt="Diff Merge Tool Selector UI" title="Diff Merge Tool Selector UI">
@@ -280,7 +335,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2012/03/02/Diff-Merge-Tool-Selector/" data-id="cipohg68i0000u8un19fc2t6s" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2012/03/02/Diff-Merge-Tool-Selector/" data-id="ciqo8ltce0002zwunic8c5ok9" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2012/03/02/Diff-Merge-Tool-Selector/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -322,7 +379,8 @@
 </ol>
 <p>Unfortunately Rss format is not providing any information about image associated with the article. So, I updated RssReaderService a little. Now it scans article content of first <img> tag and associates that url with article. <a href="http://stackoverflow.com/questions/138839/how-do-you-parse-a-html-string-for-image-tags-to-get-at-the-src-information" target="_blank" rel="external">There are tons</a> of different ways to parse contents of HTML. I prefer to use HtmlAgilityPack library that is easy to get through NuGet package manager. I think that XPath is more maintainable than RegEx and this is more important in this case than performance.</p>
 <p>Now our service layer is ready, we will go to create UI. (If you are curious about implementation, you can find a link to project sources in the end of article).</p>
-<h2 id="Create-UI-for-widget"><a href="#Create-UI-for-widget" class="headerlink" title="Create UI for widget."></a>Create UI for widget.</h2><p>First create new controller action for widget:<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ActionResult <span class="title">Widget</span>(<span class="params"><span class="keyword">string</span> feedUrl, <span class="keyword">int</span> topCount</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> View(<span class="keyword">new</span> RssWidgetModel</span><br><span class="line">	&#123;</span><br><span class="line">		FeedSource = feedUrl,</span><br><span class="line">		TopCount = topCount</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Create-UI-for-widget"><a href="#Create-UI-for-widget" class="headerlink" title="Create UI for widget."></a>Create UI for widget.</h2><p>First create new controller action for widget:
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ActionResult <span class="title">Widget</span>(<span class="params"><span class="keyword">string</span> feedUrl, <span class="keyword">int</span> topCount</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> View(<span class="keyword">new</span> RssWidgetModel</span><br><span class="line">	&#123;</span><br><span class="line">		FeedSource = feedUrl,</span><br><span class="line">		TopCount = topCount</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Then create view:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">@model SimpleRssReader.Models.RssWidgetModel</span><br><span class="line">@&#123;</span><br><span class="line">	Layout = <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">var</span> AbsoluteRootUrlPart = Request.Url.GetLeftPart(UriPartial.Authority);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"@(AbsoluteRootUrlPart + Url.Content("</span>~/Scripts/Views/WidgetHelper.js<span class="string">"))"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;link href=<span class="string">"@(AbsoluteRootUrlPart + Url.Content("</span>~/Content/HeadlinesRss.css<span class="string">"))"</span> rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"rss-widget-content"</span>&gt;</span><br><span class="line">	&lt;div <span class="keyword">class</span>=<span class="string">"loading-indicator"</span>&gt;</span><br><span class="line">		&lt;img style=<span class="string">"margin-top:60px"</span> src=<span class="string">"@(AbsoluteRootUrlPart + Url.Content("</span>~/Content/images/ajax-loader.gif<span class="string">"))"</span> /&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"></span><br><span class="line">	$(function () &#123;</span><br><span class="line">		<span class="keyword">var</span> serviceUrl = <span class="string">'@Html.Raw(AbsoluteRootUrlPart + Url.Action("ViewHeadlines"))'</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Default values</span></span><br><span class="line">		<span class="keyword">var</span> gadgetPrefs = &#123;</span><br><span class="line">			feedSource: <span class="string">'@Html.Raw(Model.FeedSource)'</span>,</span><br><span class="line">			topCount: <span class="string">'@Model.TopCount'</span></span><br><span class="line">		&#125;;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> userPrefs = $.widgetHelper.getUserProperties([<span class="string">'feedSource'</span>, <span class="string">'topCount'</span>]);</span><br><span class="line">		<span class="keyword">if</span> (userPrefs != <span class="literal">null</span>) &#123;</span><br><span class="line">			$.extend(gadgetPrefs, userPrefs);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		serviceUrl +=</span><br><span class="line">			 <span class="string">"?feedUrl="</span> + encodeURIComponent(gadgetPrefs.feedSource)</span><br><span class="line">			+ <span class="string">"&amp;topCount="</span> + encodeURIComponent(gadgetPrefs.topCount);</span><br><span class="line"></span><br><span class="line">		$.ajax(&#123;</span><br><span class="line">			url: serviceUrl,</span><br><span class="line">			dataType: <span class="string">"jsonp"</span>,</span><br><span class="line">			crossDomain: <span class="literal">true</span>,</span><br><span class="line">			success: function (data) &#123;</span><br><span class="line">				$(<span class="string">'#rss-widget-content'</span>).html(data.markup);</span><br><span class="line">				$.widgetHelper.adjustHeight();</span><br><span class="line"></span><br><span class="line">				$.widgetHelper.setTitle($(<span class="string">"#items"</span>).attr(<span class="string">'data-title'</span>));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		$(<span class="string">'body'</span>).bind(<span class="string">'imageLoad'</span>, function () &#123;</span><br><span class="line">			$.widgetHelper.adjustHeight();</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>At initial point only loading animation rendered and on documentready event will execute following script actions:</p>
@@ -340,7 +398,8 @@
 <p>And view:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@model SimpleRssReader.Models.RssFeedContent</span><br><span class="line">@&#123;</span><br><span class="line">	Layout = <span class="literal">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"items"</span> data-title=<span class="string">"@Model.FeedTitle"</span>&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">	@<span class="keyword">foreach</span> (<span class="keyword">var</span> rssItem <span class="keyword">in</span> Model.Articles)</span><br><span class="line">	&#123;</span><br><span class="line">		&lt;li&gt;</span><br><span class="line">			&lt;h2&gt;</span><br><span class="line">				&lt;a href=<span class="string">"@rssItem.Link"</span> target=<span class="string">"_blank"</span>&gt;</span><br><span class="line">					@<span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(rssItem.TitleImage))</span><br><span class="line">					&#123; </span><br><span class="line">						&lt;img src=<span class="string">"@rssItem.TitleImage"</span> onload=<span class="string">"$('body').trigger('imageLoad');"</span> /&gt;</span><br><span class="line">					&#125;</span><br><span class="line">					@rssItem.Title</span><br><span class="line">				&lt;/a&gt;</span><br><span class="line">			&lt;/h2&gt;</span><br><span class="line">		&lt;/li&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>At this point after compiling and fixing some minor problems there should be available working widget at url like this : <a href="http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10" target="_blank" rel="external">http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</a></p>
-<p>And you should get view like this:<br><img src="/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png" alt="View of the widget in the browser" title="View of the widget in the browser"></p>
+<p>And you should get view like this:
+<img src="/2011/11/07/Creating-OpenSocial-gadget/initialWidgetView_4.png" alt="View of the widget in the browser" title="View of the widget in the browser"></p>
 <h2 id="Create-Gadget-XML"><a href="#Create-Gadget-XML" class="headerlink" title="Create Gadget XML."></a>Create Gadget XML.</h2><p>OpenSocial Gadget should be described in XML according to specification. To achieve this let’s create Controller and View.</p>
 <p>Controller code:</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> System.Web;</span><br><span class="line"><span class="keyword">using</span> System.Web.Mvc;</span><br><span class="line"><span class="keyword">using</span> SimpleRssReader.Models;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">SimpleRssReader.Controllers</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">class</span> <span class="title">OpenSocialController</span> : <span class="title">Controller</span></span><br><span class="line">	&#123;</span><br><span class="line">		[HttpGet]</span><br><span class="line">		<span class="function"><span class="keyword">public</span> ActionResult <span class="title">RssFeedGadget</span>(<span class="params"></span><br><span class="line">			<span class="keyword">string</span> feed = <span class="string">"http://news.google.com/news?topic=b&amp;output=rss"</span>,</span><br><span class="line">			<span class="keyword">int</span> top = <span class="number">10</span></span>)</span><br><span class="line">		</span>&#123;</span><br><span class="line">			ViewBag.FeedSource = feed;</span><br><span class="line">			ViewBag.TopCount = top;</span><br><span class="line">			<span class="keyword">return</span> View(<span class="string">"RssFeedGadget"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -371,7 +430,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2011/11/07/Creating-OpenSocial-gadget/" data-id="cipohg6920005u8unq4et1n6j" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2011/11/07/Creating-OpenSocial-gadget/" data-id="ciqo8ltcu0005zwuncq1lg2o4" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2011/11/07/Creating-OpenSocial-gadget/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenSocial/">OpenSocial</a></li></ul>
@@ -432,7 +493,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/" data-id="cipohg6920006u8unch7e9s6s" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/" data-id="ciqo8ltc40000zwunqzhzck2b" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2011/08/12/Creating-Simple-RSS-Reader/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asp-Net-MVC/">Asp.Net MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSS/">RSS</a></li></ul>
@@ -535,6 +598,18 @@
   
 </nav>
     
+<script>
+  var disqus_shortname = 'megaboich';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 

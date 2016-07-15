@@ -29,6 +29,19 @@ Create GIT repositoryFirst of all it is necessary to init GIT repository, clone 
   
   <link rel="stylesheet" href="/css/style.css">
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70363755-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -91,15 +104,25 @@ Create GIT repositoryFirst of all it is necessary to init GIT repository, clone 
     <div class="article-entry" itemprop="articleBody">
       
         <p>This post is a very short instruction how to set up and configure running git-svn with legacy SVN repository.</p>
-<h2 id="Create-GIT-repository"><a href="#Create-GIT-repository" class="headerlink" title="Create GIT repository"></a>Create GIT repository</h2><p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.<br>First of all you need to decide at which starting point you want to have history.<br>Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.<br>First of all we need to check out repository at specific version.</p>
+<h2 id="Create-GIT-repository"><a href="#Create-GIT-repository" class="headerlink" title="Create GIT repository"></a>Create GIT repository</h2><p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.
+First of all you need to decide at which starting point you want to have history.
+Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.
+First of all we need to check out repository at specific version.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># checkout a specific revision 217000 which dated October 23, 2014</span><br><span class="line">git svn clone -r 217000 http://url-to-your-svn-repo</span><br></pre></td></tr></table></figure>
-<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.<br>Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
+<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.
+Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
-<p>One more command is to generate .gitignore file from SVN settings.<br>This step might be not necessary because you probably not the first one running this procedure.<br>So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
+<p>One more command is to generate .gitignore file from SVN settings.
+This step might be not necessary because you probably not the first one running this procedure.
+So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn show-ignore &gt; .gitignore</span><br></pre></td></tr></table></figure>
-<h2 id="Working-on-everyday-basis"><a href="#Working-on-everyday-basis" class="headerlink" title="Working on everyday basis"></a>Working on everyday basis</h2><p>Ok, after you created GIT repository you can work with it in any way you want.<br>It is very enjoyable to create as many local branches as you want and fast switching between them.<br>There are many ways to work with Git and this is not a topic of this article.<br>After finishing your work you should merge all changes to ‘git-svn’ branch and execute</p>
+<h2 id="Working-on-everyday-basis"><a href="#Working-on-everyday-basis" class="headerlink" title="Working on everyday basis"></a>Working on everyday basis</h2><p>Ok, after you created GIT repository you can work with it in any way you want.
+It is very enjoyable to create as many local branches as you want and fast switching between them.
+There are many ways to work with Git and this is not a topic of this article.
+After finishing your work you should merge all changes to ‘git-svn’ branch and execute</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn dcommit</span><br></pre></td></tr></table></figure>
-<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.<br>In this case you need to pull latest code from SVN.</p>
+<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.
+In this case you need to pull latest code from SVN.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git svn rebase</span><br></pre></td></tr></table></figure>
 <h2 id="SVN-externals"><a href="#SVN-externals" class="headerlink" title="SVN externals"></a>SVN externals</h2><p>Workaround: to get svn externals working in git it is possible to get list of all externals via command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn propget svn:externals -R</span><br></pre></td></tr></table></figure>
@@ -110,7 +133,9 @@ Create GIT repositoryFirst of all it is necessary to init GIT repository, clone 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" data-id="cipohg68i0002u8unobr9qqjv" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/" data-id="ciqo8ltej0008zwundbo338xs" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIT-SVN/">GIT SVN</a></li></ul>
@@ -132,6 +157,12 @@ Create GIT repositoryFirst of all it is necessary to init GIT repository, clone 
   
 </article>
 
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -222,6 +253,20 @@ Create GIT repositoryFirst of all it is necessary to init GIT repository, clone 
   
 </nav>
     
+<script>
+  var disqus_shortname = 'megaboich';
+  
+  var disqus_url = 'http://megaboich.github.io/2016/04/02/Setting-Up-Git-Svn-From-Very-Beginning/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 

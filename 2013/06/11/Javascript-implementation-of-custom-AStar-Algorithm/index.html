@@ -5,16 +5,22 @@
   
   <title>Javascript implementation of custom A-Star algorithm | A drop in the ocean</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.For me it was a problem of finding a way through the maze.So, I searched a bit and found that t">
+  <meta name="description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript implementation of custom A-Star algorithm">
 <meta property="og:url" content="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/index.html">
 <meta property="og:site_name" content="A drop in the ocean">
-<meta property="og:description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.For me it was a problem of finding a way through the maze.So, I searched a bit and found that t">
+<meta property="og:description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that">
 <meta property="og:updated_time" content="2016-06-20T20:35:33.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript implementation of custom A-Star algorithm">
-<meta name="twitter:description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.For me it was a problem of finding a way through the maze.So, I searched a bit and found that t">
+<meta name="twitter:description" content="Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that">
   
     <link rel="alternate" href="/atom.xml" title="A drop in the ocean" type="application/atom+xml">
   
@@ -26,6 +32,19 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70363755-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -87,22 +106,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.<br>For me it was a problem of finding a way through the maze.<br>So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms<br>and one of those is A-Star.<br>After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003" target="_blank" rel="external">A-Star Pathfinding for Beginners</a>).<br>My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
+        <p>Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms
+and one of those is A-Star.
+After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003" target="_blank" rel="external">A-Star Pathfinding for Beginners</a>).
+My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
 <p>So, here are the rules:</p>
 <ul>
 <li>Double click on the cells to build walls</li>
 <li>Select cell, then press “Set Start” or “Set Finish” buttons to change start/destination point</li>
 </ul>
-<div><br>  <link rel="stylesheet" href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/styles.css"><br><br>  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button><br>  <span class="input-group-addon">Width</span><br>  <input id="field-width" type="text" class="form-control" value="10"><br>  <span class="input-group-addon">Height</span><br>  <input id="field-height" type="text" class="form-control" value="10"><br><br>  <div class="panel panel-default"><br>    <div class="panel-body"><br>      <div id="field-container"><br>      </div><br>    </div><br>  </div>
+<div>
+  <link rel="stylesheet" href="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/styles.css">
 
-  <button id="set-start-btn" class="btn btn-default">Set Start</button><br>  <button id="set-finish-btn" class="btn btn-default">Set Finish</button><br>  <button id="go-btn" class="btn btn-success">Go!</button>
+  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button>
+  <span class="input-group-addon">Width</span>
+  <input id="field-width" type="text" class="form-control" value="10">
+  <span class="input-group-addon">Height</span>
+  <input id="field-height" type="text" class="form-control" value="10">
 
-<p>  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/a-star-algorithm.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/field-designer.js"></script><br>  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/run.js"></script><br></p></div><p></p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="field-container">
+      </div>
+    </div>
+  </div>
+
+  <button id="set-start-btn" class="btn btn-default">Set Start</button>
+  <button id="set-finish-btn" class="btn btn-default">Set Finish</button>
+  <button id="go-btn" class="btn btn-success">Go!</button>
+
+<p>  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/a-star-algorithm.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/field-designer.js"></script>
+  <script src="/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/run.js"></script>
+</p></div><p></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" data-id="cipohg68s0003u8un6hwe014r" class="article-share-link">Share</a>
+      <a data-url="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/" data-id="ciqo8ltel0009zwunv1uhi6kk" class="article-share-link">Share</a>
+      
+        <a href="http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -133,6 +179,12 @@
   
 </article>
 
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -223,6 +275,20 @@
   
 </nav>
     
+<script>
+  var disqus_shortname = 'megaboich';
+  
+  var disqus_url = 'http://megaboich.github.io/2013/06/11/Javascript-implementation-of-custom-AStar-Algorithm/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
