@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Javascript implementation of custom A-Star algorithm</title>
+        <meta name="description" content="It&#39;s about saying »Hello« to the World."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css"/>
+        <script type="text/javascript" src="/assets/js/scripts.js"></script>
+    </head>
+    <body>
+        <nav id="navbar" class="navbar has-shadow is-spaced">
+            <div class="navbar-brand">
+                <div class="navbar-item is-uppercase has-text-primary">
+                    <a class="navbar-item" href="/">
+                        <span class="has-text-warning">olek</span>
+                        <span class="has-text-primary">boiko</span>
+                        <span class="has-text-grey-lighter">.com</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <section class="section">
+            <div class="container" style="max-width:960px">
+
+                
+  <h1 class="title">Javascript implementation of custom A-Star algorithm</h1>
+
+  
+    <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+            
+    <div class="tags has-addons">
+        
+            <span class="tag is-warning">June 11, 2013</span>
+        
+        
+            <span class="tag">
+                3
+                min read
+            </span>
+        
+    </div>
+
+        </div>
+        <div class="control">
+            
+    
+        <div class="tags">
+            
+                <span class="tag">
+                    JavaScript
+                </span>
+            
+        </div>
+    
+
+        </div>
+    </div>
+
+
+  <div class="content">
+    <p>Recently I had a lot of interest for Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms
+and one of those is A-Star<!--cut-->.
+After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003">A-Star Pathfinding for Beginners</a>).
+My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
+<p>So, here are the rules:</p>
+<ul>
+<li>Double click on the cells to build walls</li>
+<li>Select cell, then press &quot;Set Start&quot; or &quot;Set Finish&quot; buttons to change start/destination point</li>
+</ul>
+<div>
+  <link rel="stylesheet" href="styles.css">
+
+<p>  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button>
+  <span class="input-group-addon">Width</span>
+  <input id="field-width" type="text" class="form-control" value="10"/>
+  <span class="input-group-addon">Height</span>
+  <input id="field-height" type="text" class="form-control" value="10"/></p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="field-container">
+      </div>
+    </div>
+  </div>
+
+<p>  <button id="set-start-btn" class="btn btn-default">Set Start</button>
+  <button id="set-finish-btn" class="btn btn-default">Set Finish</button>
+  <button id="go-btn" class="btn btn-success">Go!</button></p>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="a-star-algorithm.js"></script>
+  <script src="field-designer.js"></script>
+  <script src="run.js"></script>
+</div>
+  </div>
+
+
+
+            </div>
+        </section>
+    </body>
+</html>

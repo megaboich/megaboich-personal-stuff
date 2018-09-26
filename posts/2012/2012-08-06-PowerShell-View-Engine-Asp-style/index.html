@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>PowerShell View Engine - Asp style</title>
+        <meta name="description" content="It&#39;s about saying »Hello« to the World."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css"/>
+        <script type="text/javascript" src="/assets/js/scripts.js"></script>
+    </head>
+    <body>
+        <nav id="navbar" class="navbar has-shadow is-spaced">
+            <div class="navbar-brand">
+                <div class="navbar-item is-uppercase has-text-primary">
+                    <a class="navbar-item" href="/">
+                        <span class="has-text-warning">olek</span>
+                        <span class="has-text-primary">boiko</span>
+                        <span class="has-text-grey-lighter">.com</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <section class="section">
+            <div class="container" style="max-width:960px">
+
+                
+  <h1 class="title">PowerShell View Engine - Asp style</h1>
+
+  
+    <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+            
+    <div class="tags has-addons">
+        
+            <span class="tag is-warning">August 6, 2012</span>
+        
+        
+            <span class="tag">
+                5
+                min read
+            </span>
+        
+    </div>
+
+        </div>
+        <div class="control">
+            
+    
+        <div class="tags">
+            
+                <span class="tag">
+                    Powershell
+                </span>
+            
+        </div>
+    
+
+        </div>
+    </div>
+
+
+  <div class="content">
+    <p>Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:</p>
+<ol>
+<li>Views stores separately from code in Html files.</li>
+<li>Support of nested Views, inline PowerShell code.</li>
+<li>Using Asp-style separators &lt;%...%&gt;.</li>
+<li>Works everywhere, only PowerShell 2.0 is required without additional tweaks.<!--cut-->
+First of all I was trying to find something already implemented, but with bad luck. Someone tries Razor engine, but this is very complicated and requires additional tweaks. Someone indeed implemented their own engines, but with some custom syntax and with poor functionality. So when a bright idea came into my mind I implemented my own view engine.</li>
+</ol>
+<p>Here is screenshot of view to use with my engine.</p>
+<p><img src="image_2.png" alt=""></p>
+<h4 id="implemetation">Implemetation</h4>
+<p>When I first was discovering PowerShell I was thrilled by inline string PowerShell evaluation functionality. For example your expression:</p>
+<pre><code class="language-powershell">$test = &quot;&lt;div&gt; $($env:COMPUTERNAME)&lt;/div&gt;&quot; </code></pre>
+<p>Will be evaluated at runtime to something like this:</p>
+<pre><code class="language-html">&lt;div&gt;MYCOMPUTER&lt;/div&gt;</code></pre>
+<p>This is indeed very simple View Engine right out of the box. With it you can build complicated template like this:</p>
+<pre><code class="language-powershell">$Model = @{}    
+$Model.Title = &#39;Hello, this is a test&#39;
+$Model.Clients = @(&#39;Ivan&#39;, &#39;Sergiy&#39;, &#39;John&#39;)
+
+#view render method 1 - embedded powershell string evaluation
+$html = &quot;
+&lt;h1&gt;
+    $($Model.Title)
+&lt;/h1&gt;
+&lt;div class=&quot;&quot;test&quot;&quot;&gt;
+    &lt;ul&gt;
+        $( foreach($client in $Model.Clients) {&quot;
+        &lt;li&gt;
+            $( $client )
+        &lt;/li&gt;
+        &quot;})
+    &lt;/ul&gt;
+&lt;/div&gt;&quot;
+Write-Host $html</code></pre>
+<p>As you can see PowerShell parser is able to distinguish nested language expressions inside $() blocks, and this is extremely useful for implementation of loops and if-then statements.</p>
+<p>This method is ready for use for small templates, but it has some cons:</p>
+<ol>
+<li>View markup is included in code, rather than separate file.</li>
+<li>Nested views not supported.</li>
+<li>Syntax is complicated, when you miss ),} or “ it is hard to find where the problem is.</li>
+<li>You need to encode double quotes.</li>
+</ol>
+<p>Ok, first two problems can be solved with next function:</p>
+<pre><code class="language-powershell">function RenderViewNativePowerShell(
+    [Parameter(Mandatory=$true)][string] $viewName,
+    [Parameter(Mandatory=$true)][Object] $model
+)
+{
+    $viewFileName = Resolve-Path (&#39;Views\&#39; + $viewName)
+    $templateContent = Get-Content $viewFileName | Out-String
+    return $ExecutionContext.InvokeCommand.ExpandString(&#39;&quot;&#39; + $templateContent + &#39;&quot;&#39;)
+}</code></pre>
+<p>It loads template from file and then uses the PowerShell string evaluation on it. (It was hard to find this function in language reference).</p>
+<p>This function can be called this way:</p>
+<pre><code class="language-powershell">#view render method 2 - templates powershell evaluation
+RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
+<p>It supports nested views, take a look at view ‘test_ps.html’</p>
+<pre><code class="language-powershell">$( RenderViewNativePowerShell &#39;header_ps.html&#39; $Model )
+
+&lt;div class=&quot;&quot;test&quot;&quot;&gt;
+    &lt;ul&gt;
+         $( foreach($client in $Model.Clients) {&quot;
+            &lt;li&gt;
+                $( $client )
+            &lt;/li&gt;
+        &quot;})
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+<p>Ok, this is already very useful implementation, but what about using Asp-like &lt;%... %&gt;formatting? This special closures has support in many specialized text editors and very convenient for many people. So, next idea was simply replace Asp &lt;%...%&gt;braces to its PowerShell equivalents $(…). But this was not so simple because PowerShell syntax needs to be different in cases when nested code blocks used.</p>
+<p>After some struggling I was able to implement Regex parsing expression and intelligent replace logic. Here it is:</p>
+<pre><code class="language-powershell">function RenderView(
+    [Parameter(Mandatory=$true)][string] $viewName,
+    [Parameter(Mandatory=$true)][Object] $model
+)
+{
+    $viewFileName = Resolve-Path (&#39;Views\&#39; + $viewName)
+    $templateContent = Get-Content $viewFileName | Out-String
+
+    $rx = New-Object System.Text.RegularExpressions.Regex(&#39;(&lt;%.*?%&gt;)&#39;, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $res = @()
+    $splitted = $rx.Split($templateContent);
+    foreach($part in $splitted)
+    {
+        if ($part.StartsWith(&#39;&lt;%&#39;) -and $part.EndsWith(&#39;%&gt;&#39;)) #transform &lt;%...%&gt; blocks
+        {    
+            $expr = $part.Substring(2, $part.Length-4) #remove &lt;%%&gt;
+            $normExpr = $expr.Replace(&#39;`n&#39;,&#39;&#39;).Replace(&#39;`r&#39;,&#39;&#39;).Trim();
+
+            $startClosure = &#39;$(&#39;
+            $endClosure = &#39;)&#39;
+            if ($normExpr.EndsWith(&#39;{&#39;)) {
+                $endClosure = &#39;&quot;&#39;
+            }
+            if ($normExpr.StartsWith(&#39;}&#39;)) {
+                $startClosure = &#39;&quot;&#39;
+            }
+            $res += @($startClosure + $expr + $endClosure)
+        }
+        else #encode text blocks
+        {    
+            $expr = $part.Replace(&#39;&quot;&#39;, &#39;&quot;&quot;&#39;);
+            $res += @($expr)
+        }
+    }
+    $viewExpr = $res -join &#39;&#39;
+    return $ExecutionContext.InvokeCommand.ExpandString(&#39;&quot;&#39; + $viewExpr + &#39;&quot;&#39;)
+}</code></pre>
+<p>This code also replaces &quot; to &quot;&quot;, so it is ready for Html views.</p>
+<p>Here is screenshot from Visual Studio:</p>
+<p><img src="image_4.png" alt=""></p>
+<p>All source code with samples and tests you can find on <a href="https://github.com/megaboich/PowerShellViewEngine">GitHub</a>.</p>
+
+  </div>
+
+
+
+            </div>
+        </section>
+    </body>
+</html>
