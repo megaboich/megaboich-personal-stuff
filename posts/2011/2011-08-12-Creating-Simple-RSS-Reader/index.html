@@ -9,6 +9,11 @@
         <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
         <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
+        <!-- Highlight js -->
+        <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
+        <script src="/assets/js/highlight-js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
         <script>
@@ -220,7 +225,8 @@ public class RssFeedContent
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>Also I wrote a little CSS style sheet &quot;Rss.css&quot; to prettify results.</p>
-<p>That&#39;s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let&#39;s show Amazon feed, my url looks like this: <a href="http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</a>.</p>
+<p>That&#39;s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let&#39;s show Amazon feed, my url looks like this: </p>
+<pre><code class="language-bash">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</code></pre>
 <p>This is what result page looks like.</p>
 <p><img src="6_2.png" alt=""></p>
 <p>The end.</p>

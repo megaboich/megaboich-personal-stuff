@@ -9,6 +9,11 @@
         <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
         <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
+        <!-- Highlight js -->
+        <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
+        <script src="/assets/js/highlight-js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
         <script>
@@ -82,23 +87,29 @@
 First of all you need to decide at which starting point you want to have history.
 Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.
 First of all we need to check out repository at specific version.</p>
-<pre><code># checkout a specific revision 217000 which dated October 23, 2014
-git svn clone -r 217000 http://url-to-your-svn-repo</code></pre><p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.
+<pre><code class="language-bash"># checkout a specific revision 217000 which dated October 23, 2014
+git svn clone -r 217000 http://url-to-your-svn-repo</code></pre>
+<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.
 Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
-<pre><code>git svn rebase</code></pre><p>One more command is to generate .gitignore file from SVN settings.
+<pre><code class="language-bash">git svn rebase</code></pre>
+<p>One more command is to generate .gitignore file from SVN settings.
 This step might be not necessary because you probably not the first one running this procedure.
 So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
-<pre><code>git svn show-ignore &gt; .gitignore</code></pre><h2 id="working-on-everyday-basis">Working on everyday basis</h2>
+<pre><code class="language-bash">git svn show-ignore &gt; .gitignore</code></pre>
+<h2 id="working-on-everyday-basis">Working on everyday basis</h2>
 <p>Ok, after you created GIT repository you can work with it in any way you want.
 It is very enjoyable to create as many local branches as you want and fast switching between them.
 There are many ways to work with Git and this is not a topic of this article.
 After finishing your work you should merge all changes to &#39;git-svn&#39; branch and execute</p>
-<pre><code>git svn dcommit</code></pre><p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.
+<pre><code class="language-bash">git svn dcommit</code></pre>
+<p>That will push your changes to SVN. If your version is not the latest it will not allow to push changes.
 In this case you need to pull latest code from SVN.</p>
-<pre><code>git svn rebase</code></pre><h2 id="svn-externals">SVN externals</h2>
+<pre><code class="language-bash">git svn rebase</code></pre>
+<h2 id="svn-externals">SVN externals</h2>
 <p>Workaround: to get svn externals working in git it is possible to get list of all externals via command:</p>
-<pre><code>svn propget svn:externals -R</code></pre><p>Then you can execute simple powershell script that downloads files from svn to your git repository.</p>
-<pre><code>Write-host &#39;Update svn externals. Version 0.0.1&#39;
+<pre><code class="language-bash">svn propget svn:externals -R</code></pre>
+<p>Then you can execute simple powershell script that downloads files from svn to your git repository.</p>
+<pre><code class="language-powershell">Write-host &#39;Update svn externals. Version 0.0.1&#39;
 $ext = 
     @(
         (&quot;build&quot;, &quot;url-to-svn-repo&quot;),
@@ -121,7 +132,8 @@ foreach($e in $ext){
     Write-Host $svnPath
 
     svn export --force &quot;$svnPath&quot; &quot;$folder&quot;
-}</code></pre><p>And if you don&#39;t want to see all these files in uncommited state you shoud add them to your .gitignore file.</p>
+}</code></pre>
+<p>And if you don&#39;t want to see all these files in uncommited state you shoud add them to your .gitignore file.</p>
 
   </div>
 
