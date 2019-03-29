@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>PowerShell View Engine - Asp style</title>
+        <title>PowerShell Html Templating Engine - Asp style</title>
         <meta name="description" content="It&#39;s about saying »Hello« to the World."/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css"/>
@@ -39,7 +39,7 @@
             <div class="container" style="max-width:960px">
 
                 
-  <h1 class="title">PowerShell View Engine - Asp style</h1>
+  <h1 class="title">PowerShell Html Templating Engine - Asp style</h1>
 
   
     <div class="field is-grouped is-grouped-multiline">
@@ -75,23 +75,26 @@
 
 
   <div class="content">
-    <p>Hi everyone. In this article I want to describe my custom view engine for PowerShell. This one is simple and powerful enough. Here is list of requirements that I had implemented:</p>
+    <p>Hi everyone. In this article I want to describe implementation of my custom html templating engine for PowerShell.</p>
+<p>This one is simple and powerful enough. Here is a list of requirements that I had implemented:</p>
 <ol>
-<li>Views stores separately from code in Html files.</li>
+<li>View templates are stored separately from code in Html files.</li>
 <li>Support of nested Views, inline PowerShell code.</li>
 <li>Using Asp-style separators &lt;%...%&gt;.</li>
-<li>Works everywhere, only PowerShell 2.0 is required without additional tweaks.<!--cut-->
-First of all I was trying to find something already implemented, but with bad luck. Someone tries Razor engine, but this is very complicated and requires additional tweaks. Someone indeed implemented their own engines, but with some custom syntax and with poor functionality. So when a bright idea came into my mind I implemented my own view engine.</li>
+<li>Works everywhere, only PowerShell 2.0 is required without additional tweaks.</li>
 </ol>
-<p>Here is screenshot of view to use with my engine.</p>
+<!--cut-->
+
+<p>First of all I was trying to find something already implemented, but with bad luck. Someone tries Razor engine, but this is very complicated and requires additional tweaks. Someone indeed implemented their own engines, but with some custom syntax and with poor functionality. So when a bright idea came into my mind I implemented my own view engine.</p>
+<p>Here is a result screenshot of template to use with my engine.</p>
 <p><img src="image_2.png" alt=""></p>
-<h4 id="implemetation">Implemetation</h4>
-<p>When I first was discovering PowerShell I was thrilled by inline string PowerShell evaluation functionality. For example your expression:</p>
-<pre><code class="language-powershell">$test = &quot;&lt;div&gt; $($env:COMPUTERNAME)&lt;/div&gt;&quot; </code></pre>
+<h4 id="implemetation-story">Implemetation story</h4>
+<p>When I was discovering PowerShell first I was thrilled by inline string evaluation functionality. For example your expression:</p>
+<pre><code class="language-powershell">$test = &quot;&lt;div&gt; $($env:COMPUTERNAME)&lt;/div&gt;&quot;</code></pre>
 <p>Will be evaluated at runtime to something like this:</p>
 <pre><code class="language-html">&lt;div&gt;MYCOMPUTER&lt;/div&gt;</code></pre>
 <p>This is indeed very simple View Engine right out of the box. With it you can build complicated template like this:</p>
-<pre><code class="language-powershell">$Model = @{}    
+<pre><code class="language-powershell">$Model = @{}
 $Model.Title = &#39;Hello, this is a test&#39;
 $Model.Clients = @(&#39;Ivan&#39;, &#39;Sergiy&#39;, &#39;John&#39;)
 
@@ -110,12 +113,12 @@ $html = &quot;
     &lt;/ul&gt;
 &lt;/div&gt;&quot;
 Write-Host $html</code></pre>
-<p>As you can see PowerShell parser is able to distinguish nested language expressions inside $() blocks, and this is extremely useful for implementation of loops and if-then statements.</p>
+<p>As you can see PowerShell parser is able to distinguish nested language expressions inside <code>$( ... )</code> blocks, and this is extremely useful for implementation of loops and if-then statements.</p>
 <p>This method is ready for use for small templates, but it has some cons:</p>
 <ol>
 <li>View markup is included in code, rather than separate file.</li>
 <li>Nested views not supported.</li>
-<li>Syntax is complicated, when you miss ),} or “ it is hard to find where the problem is.</li>
+<li>Syntax is complicated, when you miss <code>)</code>, <code>}</code> or <code>&quot;</code>. It is hard to find where the problem is.</li>
 <li>You need to encode double quotes.</li>
 </ol>
 <p>Ok, first two problems can be solved with next function:</p>
@@ -132,7 +135,7 @@ Write-Host $html</code></pre>
 <p>This function can be called this way:</p>
 <pre><code class="language-powershell">#view render method 2 - templates powershell evaluation
 RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
-<p>It supports nested views, take a look at view ‘test_ps.html’</p>
+<p>It supports nested views, take a look at view <code>test_ps.html</code></p>
 <pre><code class="language-powershell">$( RenderViewNativePowerShell &#39;header_ps.html&#39; $Model )
 
 &lt;div class=&quot;&quot;test&quot;&quot;&gt;
@@ -144,7 +147,7 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
         &quot;})
     &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
-<p>Ok, this is already very useful implementation, but what about using Asp-like &lt;%... %&gt;formatting? This special closures has support in many specialized text editors and very convenient for many people. So, next idea was simply replace Asp &lt;%...%&gt;braces to its PowerShell equivalents $(…). But this was not so simple because PowerShell syntax needs to be different in cases when nested code blocks used.</p>
+<p>Ok, this is already a very useful implementation, but what about using Asp-like <code>&lt;% ... %&gt;</code> formatting? This special closures has support in many specialized text editors and very convenient for many people. So, next idea was simply replace Asp <code>&lt;% ... %&gt;</code> braces to its PowerShell equivalents <code>$( ... )</code>. But this was not so simple because PowerShell syntax needs to be different in cases when nested code blocks used.</p>
 <p>After some struggling I was able to implement Regex parsing expression and intelligent replace logic. Here it is:</p>
 <pre><code class="language-powershell">function RenderView(
     [Parameter(Mandatory=$true)][string] $viewName,
@@ -160,7 +163,7 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
     foreach($part in $splitted)
     {
         if ($part.StartsWith(&#39;&lt;%&#39;) -and $part.EndsWith(&#39;%&gt;&#39;)) #transform &lt;%...%&gt; blocks
-        {    
+        {
             $expr = $part.Substring(2, $part.Length-4) #remove &lt;%%&gt;
             $normExpr = $expr.Replace(&#39;`n&#39;,&#39;&#39;).Replace(&#39;`r&#39;,&#39;&#39;).Trim();
 
@@ -175,7 +178,7 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
             $res += @($startClosure + $expr + $endClosure)
         }
         else #encode text blocks
-        {    
+        {
             $expr = $part.Replace(&#39;&quot;&#39;, &#39;&quot;&quot;&#39;);
             $res += @($expr)
         }
@@ -183,7 +186,7 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
     $viewExpr = $res -join &#39;&#39;
     return $ExecutionContext.InvokeCommand.ExpandString(&#39;&quot;&#39; + $viewExpr + &#39;&quot;&#39;)
 }</code></pre>
-<p>This code also replaces &quot; to &quot;&quot;, so it is ready for Html views.</p>
+<p>This code also replaces <code>&quot;</code> to <code>&quot;&quot;</code>, so it is ready for Html views.</p>
 <p>Here is screenshot from Visual Studio:</p>
 <p><img src="image_4.png" alt=""></p>
 <p>All source code with samples and tests you can find on <a href="https://github.com/megaboich/PowerShellViewEngine">GitHub</a>.</p>

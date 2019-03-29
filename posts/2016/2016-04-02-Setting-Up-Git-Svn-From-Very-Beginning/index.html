@@ -83,18 +83,18 @@
 <!--cut-->
 
 <h2 id="create-git-repository">Create GIT repository</h2>
-<p>First of all it is necessary to init GIT repository, clone it from SVN. And it is good to have some number of recent commits.
-First of all you need to decide at which starting point you want to have history.
+<p>First of all it is necessary to init GIT repository and clone it from SVN. And it is good to have some number of recent commits.
+So you need to decide at which starting point you want to have history.
 Usually it is useful to have last year or two, if you want more than your local repository might be very big and slow, also it will take a lot of time to get all that from SVN.
-First of all we need to check out repository at specific version.</p>
+Initial step is to check out repository at specific version.</p>
 <pre><code class="language-bash"># checkout a specific revision 217000 which dated October 23, 2014
 git svn clone -r 217000 http://url-to-your-svn-repo</code></pre>
-<p>After some about 15 minutes (depends on your connection to SVN server) you should have local Git repository for that specific version.
+<p>After some about 15 minutes (depends on your connection to SVN server and size of your repository) you should have local Git repository for that specific version.
 Then we are going to update it to the most recent version. This will surely take a lot of time (it can take a week, so please keep calm).</p>
 <pre><code class="language-bash">git svn rebase</code></pre>
-<p>One more command is to generate .gitignore file from SVN settings.
-This step might be not necessary because you probably not the first one running this procedure.
-So it might be already .gitignore file committed by one of your colleagues before. Nevertheless this is the command.</p>
+<p>One more command is to generate <code>.gitignore</code> file from SVN settings.
+This step might be not necessary because you probably is not the first one running this procedure on this repository.
+So it might be already <code>.gitignore</code> file committed by one of your colleagues before. Nevertheless this is the command:</p>
 <pre><code class="language-bash">git svn show-ignore &gt; .gitignore</code></pre>
 <h2 id="working-on-everyday-basis">Working on everyday basis</h2>
 <p>Ok, after you created GIT repository you can work with it in any way you want.
@@ -110,7 +110,7 @@ In this case you need to pull latest code from SVN.</p>
 <pre><code class="language-bash">svn propget svn:externals -R</code></pre>
 <p>Then you can execute simple powershell script that downloads files from svn to your git repository.</p>
 <pre><code class="language-powershell">Write-host &#39;Update svn externals. Version 0.0.1&#39;
-$ext = 
+$ext =
     @(
         (&quot;build&quot;, &quot;url-to-svn-repo&quot;),
         (&quot;AutomatedTestScripts\TestServer\Platform&quot;, &quot;url-to-another-svn-repo&quot;),
@@ -128,12 +128,12 @@ foreach($e in $ext){
     $svnPath = $e[1];
 
     Write-Host &quot;======&quot;
-    Write-Host $folder 
+    Write-Host $folder
     Write-Host $svnPath
 
     svn export --force &quot;$svnPath&quot; &quot;$folder&quot;
 }</code></pre>
-<p>And if you don&#39;t want to see all these files in uncommited state you shoud add them to your .gitignore file.</p>
+<p>And if you don&#39;t want to see all these files in uncommited state you shoud add them to your <code>.gitignore</code> file.</p>
 
   </div>
 

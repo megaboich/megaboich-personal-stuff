@@ -83,7 +83,7 @@
 
 
   <div class="content">
-    <p>In this article I&#39;ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and show feed contents in simple HTML view.<!--cut--></p>
+    <p>In this article I&#39;ll create simple web application using Microsoft Asp.Net MVC framework. The main functionality is to read RSS feed and to show feed contents in simple HTML view.<!--cut--></p>
 <h2 id="step-1-create-empty-mvc-application-">Step 1. Create Empty MVC Application.</h2>
 <p>First of all use Visual Studio menu &quot;File/New project...&quot; then select Asp.Net MVC3 application template and select &quot;Empty&quot; option. We don&#39;t need all this standard stuff, this simple application will be created from scratch.</p>
 <p>Then, let&#39;s create Home controller with action Index and simple View (using Razor engine).</p>
@@ -224,10 +224,9 @@ public class RssFeedContent
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<p>Also I wrote a little CSS style sheet &quot;Rss.css&quot; to prettify results.</p>
-<p>That&#39;s all. Now Web application will show top 10 items from RSS feed specified in rssUrl url parameter. For example let&#39;s show Amazon feed, my url looks like this: </p>
-<pre><code class="language-bash">http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</code></pre>
-<p>This is what result page looks like.</p>
+<p>Also I&#39;ve created a little CSS style sheet <code>Rss.css</code> to prettify results.</p>
+<p>That&#39;s all. Now Web application will show top 10 items from RSS feed specified in <code>rssUrl</code> query parameter. For example let&#39;s show Amazon feed, my url looks like this:</p>
+<pre><code>http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</code></pre><p>This is what result page looks like.</p>
 <p><img src="6_2.png" alt=""></p>
 <p>The end.</p>
 
