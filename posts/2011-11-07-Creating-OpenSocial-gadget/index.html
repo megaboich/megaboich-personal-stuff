@@ -1,89 +1,97 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Creating OpenSocial gadget with Asp.Net MVC</title>
-        <meta name="description" content="It&#39;s about saying »Hello« to the World."/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css"/>
-        <link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
-        <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
-        <!-- Highlight js -->
-        <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
-        <script src="/assets/js/highlight-js/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+<head>
+    <meta charset="UTF-8" />
+    <title>Creating OpenSocial gadget with Asp.Net MVC</title>
+    <meta name="description" content="Oleksandr Boiko" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
+    <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-70363755-1');
-        </script>
-    </head>
-    <body>
-        <nav id="navbar" class="navbar has-shadow is-spaced">
-            <div class="navbar-brand">
-                <div class="navbar-item is-uppercase has-text-primary">
-                    <a class="navbar-item" href="/">
-                        <span class="has-text-warning">olek</span>
-                        <span class="has-text-primary">boiko</span>
-                        <span class="has-text-grey-lighter">.com</span>
-                    </a>
-                </div>
+    <!-- Highlight js -->
+    <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
+    <script src="/assets/js/highlight-js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-70363755-1');
+    </script>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item is-uppercase" href="/">
+                <span class="has-text-warning">Oleksandr</span>
+                <span class="has-text-success">Boiko</span>
+            </a>
+
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+                <a class="navbar-item" href="/projects/">
+                    Projects
+                </a>
+                <a class="navbar-item" href="/resume/">
+                    Résumé
+                </a>
+                <a class="navbar-item" href="/posts/">
+                    Blog
+                </a>
             </div>
-        </nav>
-        <section class="section section-content">
-            <div class="container" style="max-width:960px">
+        </div>
+    </nav>
 
-                
-  <h1 class="title">Creating OpenSocial gadget with Asp.Net MVC</h1>
+    <section class="section section-content">
+        <div class="container" style="max-width:960px">
+            <div class="content">
+<h1 class="title">Creating OpenSocial gadget with Asp.Net MVC</h1>
 
-  
-    <div class="field is-grouped is-grouped-multiline">
-        <div class="control">
-            
-    <div class="tags has-addons">
-        
-            <span class="tag is-warning">November 7, 2011</span>
-        
-        
+<div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-warning is-light">
+                November 7, 2011
+            </span>
             <span class="tag">
                 7
                 min read
             </span>
-        
+        </div>
     </div>
 
-        </div>
-        <div class="control">
-            
-    
+    <div class="control">
         <div class="tags">
-            
-                <span class="tag">
-                    OpenSocial
-                </span>
-            
-                <span class="tag">
-                    C#
-                </span>
-            
-                <span class="tag">
-                    Asp.Net MVC
-                </span>
-            
-        </div>
-    
-
+            <span class="tag">
+                OpenSocial
+            </span>
+            <span class="tag">
+                C#
+            </span>
+            <span class="tag">
+                Asp.Net MVC
+            </span>
         </div>
     </div>
 
-
-  <div class="content">
-    <p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standart is also becoming popular<!--cut--> in corporate web portals sector. Currently such vendors as IBM, SAP, Cisco and many others have support for OpenSocial in theirs corporate products. All this success simply explained by the fact that OpenSocial allows quickly integrate gadgets to various of host portals.</p>
+    <br />
+</div>
+<p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standart is also becoming popular<!--cut--> in corporate web portals sector. Currently such vendors as IBM, SAP, Cisco and many others have support for OpenSocial in theirs corporate products. All this success simply explained by the fact that OpenSocial allows quickly integrate gadgets to various of host portals.</p>
 <p>I will use Simple RSS reader Web application that I have created in previous article. I am going to implement OpenSocial integration, so I will able to put my gadget with RSS to any OpenSocial container.</p>
 <p>Requirements to gadget:</p>
 <ol>
@@ -93,7 +101,7 @@
 </ol>
 <p>Unfortunately Rss format is not providing any information about image associated with the article. So, I updated RssReaderService a little. Now it scans article content of first <img/> tag and associates that url with article. <a href="http://stackoverflow.com/questions/138839/how-do-you-parse-a-html-string-for-image-tags-to-get-at-the-src-information">There are tons</a> of different ways to parse contents of HTML. I prefer to use HtmlAgilityPack library that is easy to get through NuGet package manager. I think that XPath is more maintainable than RegEx and this is more important in this case than performance.</p>
 <p>Now our service layer is ready, we will proceed to create UI. (If you are curious about implementation, you can find a link to project sources in the end of article).</p>
-<h2 id="create-ui-for-widget-">Create UI for widget.</h2>
+<h2 id="create-ui-for-widget">Create UI for widget.</h2>
 <p>First create new controller action for widget:</p>
 <pre><code class="language-csharp">public ActionResult Widget(string feedUrl, int topCount)
 {
@@ -167,38 +175,38 @@
 <li>Notice that all url&#39;s used in view are rendered in absolute scheme. Generally this is not required for widget used in iframe, but for OpenSocial it matters a lot, and there are some reasons for that. Later when our gadget will be integrated to 3rd party container, just open View source in browser and discover how container did rendering job. Scripts and styles will be minimized and combined, and more important all view will be served from containers server. So, for calling our resources and ajax handlers we need to specify absolute urls.</li>
 </ol>
 <p>I included jQuery to perform Ajax and DOM manipulations. Also there is custom script <code>WidgetHelper.js</code> to perform widget manipulation. This is facade for OpenSocial integration and it provides stubs when OpenSocial is not available.</p>
-<pre><code class="language-javascript">(function($, undefined) {
-    function adjustHeight() {
-        if (typeof gadgets != &#39;undefined&#39;) {
-            gadgets.window.adjustHeight();
-        }
+<pre><code class="language-javascript">(function ($, undefined) {
+  function adjustHeight() {
+    if (typeof gadgets != &quot;undefined&quot;) {
+      gadgets.window.adjustHeight();
     }
+  }
 
-    function getUserProperties(propList) {
-        if (typeof gadgets != &#39;undefined&#39;) {
-            var prefs = new gadgets.Prefs();
-            var props = {};
-            for (var i = 0; i &lt; propList.length; ++i) {
-                props[propList[i]] = prefs.getString(propList[i]);
-            }
-            return props;
-        }
-        return null;
+  function getUserProperties(propList) {
+    if (typeof gadgets != &quot;undefined&quot;) {
+      var prefs = new gadgets.Prefs();
+      var props = {};
+      for (var i = 0; i &lt; propList.length; ++i) {
+        props[propList[i]] = prefs.getString(propList[i]);
+      }
+      return props;
     }
+    return null;
+  }
 
-    function setTitle(newTitle) {
-        if (typeof gadgets != &#39;undefined&#39;) {
-            gadgets.window.setTitle(newTitle);
-        }
+  function setTitle(newTitle) {
+    if (typeof gadgets != &quot;undefined&quot;) {
+      gadgets.window.setTitle(newTitle);
     }
+  }
 
-    $.extend({
-        widgetHelper: {
-            adjustHeight: adjustHeight,
-            getUserProperties: getUserProperties,
-            setTitle: setTitle
-        }
-    });
+  $.extend({
+    widgetHelper: {
+      adjustHeight: adjustHeight,
+      getUserProperties: getUserProperties,
+      setTitle: setTitle
+    }
+  });
 })(jQuery);</code></pre>
 <p>In next step let&#39;s create controller action for dynamic Rss content:</p>
 <pre><code class="language-csharp">[JsonpMarkup]
@@ -236,7 +244,7 @@ public ActionResult ViewHeadlines(string feedUrl, int topCount)
 <p>At this point after compiling and fixing some minor problems there should be available working widget at url like this:</p>
 <pre><code> http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</code></pre><p>And you should get view like this in the browser:
 <img src="initialWidgetView_4.png" alt=""></p>
-<h2 id="create-gadget-xml-">Create Gadget XML.</h2>
+<h2 id="create-gadget-xml">Create Gadget XML.</h2>
 <p>OpenSocial Gadget should be described in XML according to specification. To achieve this let&#39;s create Controller and View.</p>
 <p>Controller code:</p>
 <pre><code class="language-csharp">using System;
@@ -287,7 +295,7 @@ namespace SimpleRssReader.Controllers
 <p>This is OpenSocial Gadget Xml, and it contains all information to render gadget in container. Google have good <a href="http://code.google.com/intl/uk-UA/apis/gadgets/docs/gs.html">documentation</a> about this. <code>ModulePrefs</code> section contains copyright attributes and required features. <code>UserPref</code> sections contains user preferences that will be available to user. Access to this preferences is performed via OpenSocial Javascript API in WidgetHelper.js. Section <code>Content</code> is the container for HTML, CSS, Javascript. Here goes rendering of the Widget action.</p>
 <p>So, now you should have a working gadget XML available at url like this:</p>
 <pre><code>http://localhost/reader/OpenSocial/RssFeedGadget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</code></pre><p><img src="gadgetXml_2.png" alt=""></p>
-<h2 id="deploy-gadget-to-container-">Deploy gadget to container.</h2>
+<h2 id="deploy-gadget-to-container">Deploy gadget to container.</h2>
 <p><a href="http://www.liferay.com/downloads/liferay-portal/available-releases">LifeRay</a> portal is a good choice in order to test OpenSocial gadgets. Though it is written in Java this product is easy to install and run. You should have Java virtual machine on your test computer in order to run this portal. To install just extract zip archive and run:</p>
 <pre><code>liferay-portal-6.1.0\tomcat-7.0.21\bin\startup.bat</code></pre><p>Then tomcat web server will be run on port 8080 by default with Liferay portal. Looks impressive.</p>
 <p><img src="LiferayFirstStart_2.png" alt=""></p>
@@ -308,18 +316,21 @@ namespace SimpleRssReader.Controllers
 <p>All sources are available at <a href="https://bitbucket.org/megaboich/simplerssreader">BitBucket</a>.</p>
 <p>Enjoy.</p>
 
-  </div>
 
+</div>
+        </div>
+    </section>
 
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <span>© Copyright 2020, </span>
+                <a href="/">Oleksandr Boiko</a>.
+                <span>The website content is licensed </span>
+                <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+</body>
 
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>© Copyright 2019, <a href="/">Oleksandr Boiko</a>. 
-                The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.</p>
-            </div>
-        </footer>
-    </body>
 </html>

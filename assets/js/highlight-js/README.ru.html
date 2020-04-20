@@ -1,8 +1,8 @@
-<h1 id="highlight-js">Highlight.js</h1>
+<h1 id="highlightjs">Highlight.js</h1>
 <p>Highlight.js — это инструмент для подсветки синтаксиса, написанный на JavaScript. Он работает
 и в браузере, и на сервере. Он работает с практически любой HTML разметкой, не
 зависит от каких-либо фреймворков и умеет автоматически определять язык.</p>
-<h2 id="-">Начало работы</h2>
+<h2 id="начало-работы">Начало работы</h2>
 <p>Минимум, что нужно сделать для использования highlight.js на веб-странице — это
 подключить библиотеку, CSS-стили и вызывать <a href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a>:</p>
 <pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/path/to/styles/default.css&quot;&gt;
@@ -16,7 +16,7 @@
 Класс также можно предварить префиксами <code>language-</code> или <code>lang-</code>.</p>
 <p>Чтобы отключить подсветку для какого-то блока, используйте класс <code>nohighlight</code>:</p>
 <pre><code class="language-html">&lt;pre&gt;&lt;code class=&quot;nohighlight&quot;&gt;...&lt;/code&gt;&lt;/pre&gt;</code></pre>
-<h2 id="-">Инициализация вручную</h2>
+<h2 id="инициализация-вручную">Инициализация вручную</h2>
 <p>Чтобы иметь чуть больше контроля за инициализацией подсветки, вы можете
 использовать функции <a href="http://highlightjs.readthedocs.io/en/latest/api.html#highlightblock-block"><code>highlightBlock</code></a> и <a href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a>. Таким образом
 можно управлять тем, <em>что</em> и <em>когда</em> подсвечивать.</p>
@@ -52,7 +52,7 @@ $(&#39;div.code&#39;).each(function(i, block) {
   var result = self.hljs.highlightAuto(event.data);
   postMessage(result.value);
 }</code></pre>
-<h2 id="-">Установка библиотеки</h2>
+<h2 id="установка-библиотеки">Установка библиотеки</h2>
 <p>Highlight.js можно использовать в браузере прямо с CDN хостинга или скачать
 индивидуальную сборку, а также установив модуль на сервере. На
 <a href="https://highlightjs.org/download/">странице загрузки</a> подробно описаны все варианты.</p>
@@ -64,10 +64,10 @@ $(&#39;div.code&#39;).each(function(i, block) {
 вручную:</p>
 <pre><code class="language-html">&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 <p><strong>Про Almond.</strong> Нужно задать имя модуля в оптимизаторе, например:</p>
-<pre><code>r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</code></pre><h2 id="-">Лицензия</h2>
+<pre><code>r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</code></pre><h2 id="лицензия">Лицензия</h2>
 <p>Highlight.js распространяется под лицензией BSD. Подробнее читайте файл
 <a href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE">LICENSE</a>.</p>
-<h2 id="-">Ссылки</h2>
+<h2 id="ссылки">Ссылки</h2>
 <p>Официальный сайт билиотеки расположен по адресу <a href="https://highlightjs.org/">https://highlightjs.org/</a>.</p>
 <p>Более подробная документация по API и другим темам расположена на
 <a href="http://highlightjs.readthedocs.io/">http://highlightjs.readthedocs.io/</a>.</p>

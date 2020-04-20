@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Welcome</title>
+    <title>Javascript implementation of custom A-Star algorithm</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
@@ -60,26 +60,68 @@
     <section class="section section-content">
         <div class="container" style="max-width:960px">
             <div class="content">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Javascript implementation of custom A-Star algorithm</h1>
 
 <div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-warning is-light">
+                June 11, 2013
+            </span>
+            <span class="tag">
+                3
+                min read
+            </span>
+        </div>
+    </div>
+
+    <div class="control">
+        <div class="tags">
+            <span class="tag">
+                JavaScript
+            </span>
+        </div>
+    </div>
+
+    <br />
 </div>
-<p>My name is Oleksandr Boiko and this is my personal website.</p>
-<p>I lived in <a href="https://en.wikipedia.org/wiki/Kharkiv">Kharkiv, Ukraine</a> till 2015 and then I moved to <a href="https://en.wikipedia.org/wiki/Randstad">Amsterdam area, The Netherlands</a>.</p>
-<p>I have a beautiful wife, a quite active son and a daughter and a very smart tuxedo cat.</p>
-<p>My main occupation is a software development, I do this professionally for my living since 2005 and so far I pretty like what I am doing.</p>
+<p>Recently I had a lots of interest in Javascript and decided to implement something funny and interesting.
+For me it was a problem of finding a way through the maze.
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star<!--cut-->.
+After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003">A-Star Pathfinding for Beginners</a>).
+My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
+<p>So, here are the rules:</p>
 <ul>
-<li><a href="https://www.linkedin.com/in/oleksandrboiko">LinkedIn profile</a></li>
-<li><a href="/resume/">Résumé</a></li>
+<li>Double click on the cells to build / erase walls</li>
+<li>Select cell, then press &quot;Set Start&quot; or &quot;Set Finish&quot; buttons to change start/destination point</li>
+<li>Click on the &quot;Go!&quot; button to calculate a path.</li>
 </ul>
-<p>Sometimes I have some free time and urgent desire to code something different or unusual. I really like to do experiments and learn new stuff. Occasionally it happens that small experiment evolves into a project.</p>
-<ul>
-<li><a href="/projects/">Projects</a></li>
-<li><a href="https://github.com/megaboich">Github profile</a></li>
-</ul>
-<p>When I do have something to share I try to write an article in my <a href="/posts/">blog</a>.</p>
-<p>E-mail: <a href="mailto:mega.boich@gmail.com">mega.boich@gmail.com</a></p>
-<div id="main-home-photo-bg"></div>
+<div>
+  <link rel="stylesheet" href="styles.css">
+
+<p>  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button>
+  <br/>
+  <label for="field-width" class="input-group-addon">Width</label>
+  <input id="field-width" type="text" class="form-control" value="10"/>
+  <br/>
+  <label for="field-height" class="input-group-addon">Height</label>
+  <input id="field-height" type="text" class="form-control" value="10"/>
+  <br/></p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="field-container">
+      </div>
+    </div>
+  </div>
+
+<p>  <button id="set-start-btn" class="btn btn-default">Set Start</button>
+  <button id="set-finish-btn" class="btn btn-default">Set Finish</button>
+  <button id="go-btn" class="btn btn-success">Go!</button></p>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="a-star-algorithm.js"></script>
+  <script src="field-designer.js"></script>
+  <script src="run.js"></script>
+</div>
 
 
 </div>

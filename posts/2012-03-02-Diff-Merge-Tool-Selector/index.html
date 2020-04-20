@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Welcome</title>
+    <title>Diff Merge Tool Selector</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
@@ -60,26 +60,40 @@
     <section class="section section-content">
         <div class="container" style="max-width:960px">
             <div class="content">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Diff Merge Tool Selector</h1>
 
 <div class="field is-grouped is-grouped-multiline">
+    <div class="control">
+        <div class="tags has-addons">
+            <span class="tag is-warning is-light">
+                March 2, 2012
+            </span>
+            <span class="tag">
+                3
+                min read
+            </span>
+        </div>
+    </div>
+
+    <div class="control">
+        <div class="tags">
+            <span class="tag">
+                Tools
+            </span>
+        </div>
+    </div>
+
+    <br />
 </div>
-<p>My name is Oleksandr Boiko and this is my personal website.</p>
-<p>I lived in <a href="https://en.wikipedia.org/wiki/Kharkiv">Kharkiv, Ukraine</a> till 2015 and then I moved to <a href="https://en.wikipedia.org/wiki/Randstad">Amsterdam area, The Netherlands</a>.</p>
-<p>I have a beautiful wife, a quite active son and a daughter and a very smart tuxedo cat.</p>
-<p>My main occupation is a software development, I do this professionally for my living since 2005 and so far I pretty like what I am doing.</p>
-<ul>
-<li><a href="https://www.linkedin.com/in/oleksandrboiko">LinkedIn profile</a></li>
-<li><a href="/resume/">Résumé</a></li>
-</ul>
-<p>Sometimes I have some free time and urgent desire to code something different or unusual. I really like to do experiments and learn new stuff. Occasionally it happens that small experiment evolves into a project.</p>
-<ul>
-<li><a href="/projects/">Projects</a></li>
-<li><a href="https://github.com/megaboich">Github profile</a></li>
-</ul>
-<p>When I do have something to share I try to write an article in my <a href="/posts/">blog</a>.</p>
-<p>E-mail: <a href="mailto:mega.boich@gmail.com">mega.boich@gmail.com</a></p>
-<div id="main-home-photo-bg"></div>
+<p>DiffMergeSelector might be a helpful tool in case you have several favorite diff/merge tools. It works like &quot;proxy&quot; between your diff tools and your IDE, SVN, Git, Mercurial or any other development tool.<!--cut-->
+For example you can configure Tortoise SVN to use DiffMergeSelector as external merge tool:</p>
+<p><img src="svn-settings.png" alt=""></p>
+<p>Then each time when you launch diff from Tortoise SVN you will get something like this:</p>
+<p><img src="main_2.png" alt=""></p>
+<p>All you need is perform double-click on icon. It will launch corresponding Diff Tool with appropriate parameters. This is very helpful when you have to use different merge tools for different files or different tasks, and don&#39;t want to reconfigure all your development tools each time.</p>
+<p>If you are going to use the same tool for a known timespan you can skip this step of selecting tool each time just use &quot;Remember my choice for N minutes&quot; option. When DiffMergeSelector runs in this time interval it will automatically run last used Diff Tool without asking your opinion. If you want to clear this timespan you can run DiffMergeSelector.exe with &quot;-r&quot; command line, or &quot;reset_last_choice.cmd&quot; which comes in ZIP package.</p>
+<p>DiffMergeSelector allows customization of command line for each Diff Tool, for example I was able to easily configure it to run Meld (which by fact is running by Python).</p>
+<p>In case you are interested source code is available on <a href="https://github.com/megaboich/DiffMerge-Tool-Selector">Github</a>.</p>
 
 
 </div>
