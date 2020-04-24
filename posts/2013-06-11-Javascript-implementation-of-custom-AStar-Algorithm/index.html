@@ -10,11 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
     <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
-    <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
-    <script src="/assets/js/highlight-js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
     <script>
@@ -23,6 +18,11 @@
         gtag('js', new Date());
         gtag('config', 'UA-70363755-1');
     </script>
+
+    <!-- Highlight js -->
+    <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
+    <script src="/assets/js/highlight-js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -53,15 +53,16 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
+                <a class="navbar-item" href="/chords/">
+                    Chords
+                </a>
             </div>
         </div>
     </nav>
 
     <section class="section section-content">
         <div class="container" style="max-width:960px">
-            <div class="content">
-<h1 class="title">Javascript implementation of custom A-Star algorithm</h1>
-
+            <div class="content"><h1 class="title">Javascript implementation of custom A-Star algorithm</h1>
 <div class="field is-grouped is-grouped-multiline">
     <div class="control">
         <div class="tags has-addons">
@@ -84,8 +85,7 @@
     </div>
 
     <br />
-</div>
-<p>Recently I had a lots of interest in Javascript and decided to implement something funny and interesting.
+</div><p>Recently I had a lots of interest in Javascript and decided to implement something funny and interesting.
 For me it was a problem of finding a way through the maze.
 So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star<!--cut-->.
 After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003">A-Star Pathfinding for Beginners</a>).
@@ -122,7 +122,6 @@ My interest progressed to this demo implementation, and it is possible to play w
   <script src="field-designer.js"></script>
   <script src="run.js"></script>
 </div>
-
 
 </div>
         </div>

@@ -10,11 +10,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
     <script type="text/javascript" src="/assets/js/scripts.js"></script>
 
-    <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
-    <script src="/assets/js/highlight-js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
     <script>
@@ -23,6 +18,11 @@
         gtag('js', new Date());
         gtag('config', 'UA-70363755-1');
     </script>
+
+    <!-- Highlight js -->
+    <link rel="stylesheet" href="/assets/js/highlight-js/styles/default.css">
+    <script src="/assets/js/highlight-js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -53,15 +53,16 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
+                <a class="navbar-item" href="/chords/">
+                    Chords
+                </a>
             </div>
         </div>
     </nav>
 
     <section class="section section-content">
         <div class="container" style="max-width:960px">
-            <div class="content">
-<h1 class="title">PowerShell Html Templating Engine - Asp style</h1>
-
+            <div class="content"><h1 class="title">PowerShell Html Templating Engine - Asp style</h1>
 <div class="field is-grouped is-grouped-multiline">
     <div class="control">
         <div class="tags has-addons">
@@ -84,8 +85,7 @@
     </div>
 
     <br />
-</div>
-<p>Hi everyone. In this article I want to describe implementation of my custom html templating engine for PowerShell.</p>
+</div><p>Hi everyone. In this article I want to describe implementation of my custom html templating engine for PowerShell.</p>
 <p>This one is simple and powerful enough. Here is a list of requirements that I had implemented:</p>
 <ol>
 <li>View templates are stored separately from code in Html files.</li>
@@ -200,7 +200,6 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
 <p>Here is screenshot from Visual Studio:</p>
 <p><img src="image_4.png" alt=""></p>
 <p>All source code with samples and tests you can find on <a href="https://github.com/megaboich/PowerShellViewEngine">GitHub</a>.</p>
-
 
 </div>
         </div>
