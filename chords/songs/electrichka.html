@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
     <script type="text/javascript" src="/assets/js/scripts.js"></script>
+    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
+    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -19,7 +21,10 @@
         gtag('config', 'UA-70363755-1');
     </script>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/song.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/song.css" />
+        <script type="text/javascript" src="/assets/js/chord-renderer.js"></script>
+        <script type="text/javascript" src="/assets/js/lib/alphatab/alphatab.min.js"></script>
+        <script type="text/javascript" src="/assets/js/alphatab-renderer.js"></script>
 </head>
 
 <body>
@@ -59,32 +64,26 @@
 
     <section class="section section-content">
         <div class="container" style="max-width:960px">
-            <div class="content"><h1 class="title">Электричка</h1>
-<div id="chords-img-bg"></div>
+            <div class="content">    <h1 class="title">Электричка</h1>
+    <div id="chords-img-bg"></div>
 
-<div class="field is-grouped is-grouped-multiline">
-    <div class="control">
-        <div class="tags has-addons">
+    <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+            <div class="tags has-addons">
+            </div>
         </div>
-    </div>
-
-    <div class="control">
-        <div class="tags">
-            <span class="tag">
-                Цой
-            </span>
+    
+        <div class="control">
+            <div class="tags">
+                <span class="tag">
+                    Цой
+                </span>
+            </div>
         </div>
+    
+        <br />
     </div>
-
-    <br />
-</div><div>
-    <br />
-    <div id="song_sample">
-        <iframe width="100%" height="100" scrolling="no" frameborder="no"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/899109412&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
-    </div>
-    <br />
-</div>
+    <p><soundcloud-renderer data-soundcloudid="899109412"></soundcloud-renderer></p>
 <p><code>Em             C      Em          C        Em   C  Em  C</code></p>
 <p>Я вчера слишком поздно лег, сегодня рано встал,</p>
 <p>Я вчера слишком поздно лег, я почти не спал.</p>
@@ -98,17 +97,9 @@
 <p>В тамбуре накурено, и в то же время как-то свежо.</p>
 <p>Почему я молчу, почему не кричу? Молчу.</p>
 <p>Электричка везет меня туда, куда я не хочу.</p>
-
-
-<div>
-    <div class="chords-container">
-            <div class="chord-container" data-chord-notation="C 0-1-0-2-3-3">
-                <!--Chord SVG should be rendered here -->
-            </div>
-    </div>
-    <script src="/assets/js/chords-renderer.js"></script>
-    <script>chordsRenderer.renderAll()</script>
-</div>
+<hr>
+<p><chord-renderer data-chord="C 0-1-0-2-3-3"></chord-renderer></p>
+    
 </div>
         </div>
     </section>
