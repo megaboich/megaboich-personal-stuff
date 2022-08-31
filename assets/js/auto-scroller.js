@@ -23,6 +23,7 @@
             this.parentElement.style.position = 'sticky';
             this.parentElement.style.top = '30px';
             this.parentElement.style.height = '1px';
+            this.parentElement.style.zIndex = 100;
 
             const style = document.createElement("style");
             style.textContent = `
@@ -63,9 +64,8 @@
                     const startPosition = startMarker.getBoundingClientRect().top + window.scrollY;
                     const endMarker = document.getElementsByTagName('auto-scroller-end').item(0);
                     const endPosition = endMarker
-                        ? endMarker.getBoundingClientRect().top + window.scrollY + /* some extra white space after end marker */ 100
+                        ? (endMarker.getBoundingClientRect().top + window.scrollY + /* some extra white space after end marker */ 100)
                         : document.body.scrollHeight;
-                    console.log("HH", startPosition, endPosition, window.innerHeight);
                     const scrollDistance = endPosition - startPosition - window.innerHeight;
                     if (scrollDistance < 0) {
                         // We dont need to scroll anything
@@ -76,8 +76,6 @@
                     const durationInS = parseFloat(this.getAttribute("duration") || "3") * 60;
                     const durationInMs = durationInS * 1000;
                     const increment = scrollDistance / (durationInS * fps);
-                    console.log('Hey autoscroller', durationInS, scrollDistance, increment);
-
                     const startTime = new Date().getTime();
                     currentTimerId = setInterval(() => {
                         window.scrollBy({ top: increment, behavior: 'smooth' });
