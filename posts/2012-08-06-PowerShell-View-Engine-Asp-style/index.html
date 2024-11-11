@@ -6,11 +6,18 @@
     <title>PowerShell Html Templating Engine - Asp style</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -22,8 +29,8 @@
     </script>
 
     <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/lib/highlight-js/styles/default.css">
-    <script src="/assets/js/lib/highlight-js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
@@ -55,8 +62,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -102,9 +109,11 @@
 <p><img src="image_2.png" alt=""></p>
 <h4 id="implemetation-story">Implemetation story</h4>
 <p>When I was discovering PowerShell first I was thrilled by inline string evaluation functionality. For example your expression:</p>
-<pre><code class="language-powershell">$test = &quot;&lt;div&gt; $($env:COMPUTERNAME)&lt;/div&gt;&quot;</code></pre>
+<pre><code class="language-powershell">$test = &quot;&lt;div&gt; $($env:COMPUTERNAME)&lt;/div&gt;&quot;
+</code></pre>
 <p>Will be evaluated at runtime to something like this:</p>
-<pre><code class="language-html">&lt;div&gt;MYCOMPUTER&lt;/div&gt;</code></pre>
+<pre><code class="language-html">&lt;div&gt;MYCOMPUTER&lt;/div&gt;
+</code></pre>
 <p>This is indeed very simple View Engine right out of the box. With it you can build complicated template like this:</p>
 <pre><code class="language-powershell">$Model = @{}
 $Model.Title = &#39;Hello, this is a test&#39;
@@ -124,7 +133,8 @@ $html = &quot;
         &quot;})
     &lt;/ul&gt;
 &lt;/div&gt;&quot;
-Write-Host $html</code></pre>
+Write-Host $html
+</code></pre>
 <p>As you can see PowerShell parser is able to distinguish nested language expressions inside <code>$( ... )</code> blocks, and this is extremely useful for implementation of loops and if-then statements.</p>
 <p>This method is ready for use for small templates, but it has some cons:</p>
 <ol>
@@ -142,11 +152,13 @@ Write-Host $html</code></pre>
     $viewFileName = Resolve-Path (&#39;Views\&#39; + $viewName)
     $templateContent = Get-Content $viewFileName | Out-String
     return $ExecutionContext.InvokeCommand.ExpandString(&#39;&quot;&#39; + $templateContent + &#39;&quot;&#39;)
-}</code></pre>
+}
+</code></pre>
 <p>It loads template from file and then uses the PowerShell string evaluation on it. (It was hard to find this function in language reference).</p>
 <p>This function can be called this way:</p>
 <pre><code class="language-powershell">#view render method 2 - templates powershell evaluation
-RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
+RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model
+</code></pre>
 <p>It supports nested views, take a look at view <code>test_ps.html</code></p>
 <pre><code class="language-powershell">$( RenderViewNativePowerShell &#39;header_ps.html&#39; $Model )
 
@@ -158,7 +170,8 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
             &lt;/li&gt;
         &quot;})
     &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
 <p>Ok, this is already a very useful implementation, but what about using Asp-like <code>&lt;% ... %&gt;</code> formatting? This special closures has support in many specialized text editors and very convenient for many people. So, next idea was simply replace Asp <code>&lt;% ... %&gt;</code> braces to its PowerShell equivalents <code>$( ... )</code>. But this was not so simple because PowerShell syntax needs to be different in cases when nested code blocks used.</p>
 <p>After some struggling I was able to implement Regex parsing expression and intelligent replace logic. Here it is:</p>
 <pre><code class="language-powershell">function RenderView(
@@ -197,7 +210,8 @@ RenderViewNativePowerShell &#39;Test_ps.html&#39; $Model</code></pre>
     }
     $viewExpr = $res -join &#39;&#39;
     return $ExecutionContext.InvokeCommand.ExpandString(&#39;&quot;&#39; + $viewExpr + &#39;&quot;&#39;)
-}</code></pre>
+}
+</code></pre>
 <p>This code also replaces <code>&quot;</code> to <code>&quot;&quot;</code>, so it is ready for Html views.</p>
 <p>Here is screenshot from Visual Studio:</p>
 <p><img src="image_4.png" alt=""></p>

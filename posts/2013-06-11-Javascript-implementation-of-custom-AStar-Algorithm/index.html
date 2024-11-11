@@ -6,11 +6,18 @@
     <title>Javascript implementation of custom A-Star algorithm</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -22,8 +29,8 @@
     </script>
 
     <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/lib/highlight-js/styles/default.css">
-    <script src="/assets/js/lib/highlight-js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
@@ -55,8 +62,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -89,7 +96,7 @@
     <br />
 </div><p>Recently I had a lots of interest in Javascript and decided to implement something funny and interesting.
 For me it was a problem of finding a way through the maze.
-So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star<!--cut-->.
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star.<!--cut-->
 After sore investigating I found very good article by Patrick Lester (<a href="http://www.gamedev.net/page/resources/_/technical/artificial-intelligence/a-pathfinding-for-beginners-r2003">A-Star Pathfinding for Beginners</a>).
 My interest progressed to this demo implementation, and it is possible to play with it a bit right here.</p>
 <p>So, here are the rules:</p>
@@ -100,7 +107,7 @@ My interest progressed to this demo implementation, and it is possible to play w
 </ul>
 <div>
   <link rel="stylesheet" href="styles.css">
-
+  
 <p>  <button id="gen-field-btn" class="btn btn-default">Generate New Field</button>
   <br/>
   <label for="field-width" class="input-group-addon">Width</label>
@@ -115,7 +122,7 @@ My interest progressed to this demo implementation, and it is possible to play w
       </div>
     </div>
   </div>
-
+  
 <p>  <button id="set-start-btn" class="btn btn-default">Set Start</button>
   <button id="set-finish-btn" class="btn btn-default">Set Finish</button>
   <button id="go-btn" class="btn btn-success">Go!</button></p>

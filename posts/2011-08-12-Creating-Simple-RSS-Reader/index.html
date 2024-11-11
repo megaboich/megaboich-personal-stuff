@@ -6,11 +6,18 @@
     <title>Creating Simple RSS Reader Web application with C# and Asp.Net MVC.</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -22,8 +29,8 @@
     </script>
 
     <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/lib/highlight-js/styles/default.css">
-    <script src="/assets/js/lib/highlight-js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
@@ -55,8 +62,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -123,7 +130,8 @@ public class RssFeedContent
     public string FeedTitle { get; set; }
 
     public IEnumerable&lt;RssArticle&gt; Articles { get; set; }
-}</code></pre>
+}
+</code></pre>
 <p>And here goes the service:</p>
 <pre><code class="language-csharp">public class RssReaderService: IRssReaderService
 {
@@ -187,7 +195,8 @@ public class RssFeedContent
 
         return rssContentModel;
     }
-}</code></pre>
+}
+</code></pre>
 <p>As you can see RssReaderService is able to read RSS and Atom feed formats.</p>
 <p>Then, next step is to use our new service from controller and update view to display the feed. So, the controller:</p>
 <pre><code class="language-csharp">public class HomeController : Controller
@@ -198,7 +207,8 @@ public class RssFeedContent
         var model = rssService.ReadFeed(rssUrl, 10);
         return View(model);
     }
-}</code></pre>
+}
+</code></pre>
 <p>And view:</p>
 <pre><code class="language-csharp">@model SimpleRssReader.Models.RssFeedContent
 @{
@@ -233,10 +243,13 @@ public class RssFeedContent
     &lt;/ul&gt;
     &lt;/div&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <p>Also I&#39;ve created a little CSS style sheet <code>Rss.css</code> to prettify results.</p>
 <p>That&#39;s all. Now Web application will show top 10 items from RSS feed specified in <code>rssUrl</code> query parameter. For example let&#39;s show Amazon feed, my url looks like this:</p>
-<pre><code>http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso</code></pre><p>This is what result page looks like.</p>
+<pre><code>http://localhost:26807/?rssUrl=http://www.amazon.com/rss/tag/smartphone/popular/ref=tag_rsh_hl_erso
+</code></pre>
+<p>This is what result page looks like.</p>
 <p><img src="6_2.png" alt=""></p>
 <p>The end.</p>
 

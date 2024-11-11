@@ -6,11 +6,18 @@
     <title>HTTP for beginners</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -22,8 +29,8 @@
     </script>
 
     <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/lib/highlight-js/styles/default.css">
-    <script src="/assets/js/lib/highlight-js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
@@ -55,8 +62,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -117,7 +124,9 @@
 </ol>
 <pre><code>GET / HTTP/1.1
 Host: developer.mozilla.org
-Accept-Language: fr</code></pre><ol start="3">
+Accept-Language: fr
+</code></pre>
+<ol start="3">
 <li>Receive a response:</li>
 </ol>
 <pre><code>HTTP/1.1 200 OK
@@ -129,7 +138,9 @@ Accept-Ranges: bytes
 Content-Length: 29769
 Content-Type: text/html
 
-&lt;!DOCTYPE html... (here comes the 29769 bytes of the requested web page)</code></pre><ol start="4">
+&lt;!DOCTYPE html... (here comes the 29769 bytes of the requested web page)
+</code></pre>
+<ol start="4">
 <li>Close connection</li>
 </ol>
 <h2 id="http-request">HTTP Request</h2>
@@ -144,7 +155,7 @@ Content-Type: text/html
 <li><strong>Content-Type</strong>: application/json;charset=UTF-8</li>
 <li><strong>Cookie</strong>: _ga=GA1.1.279945238.1538047637; BAYEUX_BROWSER=xl0ydxss3t6c1wn8; glide_user_route=glide.bc4183be9d54d8709bf320ec7b40ddea; glide_user_activity=&quot;U0N2Mzp1b29EeERpTUcrL2xtNzhZMHpEdmx4TmxJMUx5V3U5STozSy9JM1F5ZEF3Y1JzUWJsRGYrTTlnaVBVUk5PU1hiK2ZicE1pRlV5cUZzPTo2ODE2Zjc5Y2MwYTgwMTY0MDFjNWEzM2JlMDRiZTQ0MQ==&quot;; JSESSIONID=4587CA945CDF2900CF1172589E4A623E;</li>
 <li><strong>Cache-Control</strong>: no-cache</li>
-<li><strong>Referer</strong>: <a href="http://localhost:9090/$pa_detailed.do?jvar_uuid=fb007202d7130100b96d45a3ce6103b4&amp;jvar_breakdown=0df47e02d7130100b96d45a3ce610399&amp;jvar_elements=c1a861a7b90033000099145cdb12f0b4,81a861a7b90033000099145cdb12f0b4">http://localhost:9090/$pa_detailed.do?jvar_uuid=fb007202d7130100b96d45a3ce6103b4&amp;jvar_breakdown=0df47e02d7130100b96d45a3ce610399&amp;jvar_elements=c1a861a7b90033000099145cdb12f0b4,81a861a7b90033000099145cdb12f0b4</a></li>
+<li><strong>Referer</strong>: <a href="http://localhost:9090/$pa_detailed.do?jvar_uuid=fb007202d7130100b96d45a3ce6103b4&jvar_breakdown=0df47e02d7130100b96d45a3ce610399&jvar_elements=c1a861a7b90033000099145cdb12f0b4,81a861a7b90033000099145cdb12f0b4">http://localhost:9090/$pa_detailed.do?jvar_uuid=fb007202d7130100b96d45a3ce6103b4&amp;jvar_breakdown=0df47e02d7130100b96d45a3ce610399&amp;jvar_elements=c1a861a7b90033000099145cdb12f0b4,81a861a7b90033000099145cdb12f0b4</a></li>
 <li><strong>User-Agent</strong>: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36</li>
 <li><strong>X-UserToken</strong>: 13d3dbe377103300fde1bfc2681061bc851f6637198786af5654ffa00b5453c904e12fd7</li>
 </ul>
@@ -181,7 +192,8 @@ Content-Length: nnnn
            &lt;Price&gt;MSFT&lt;/Price&gt;
        &lt;/GetStockQuote&gt;
    &lt;/SOAP-ENV:Body&gt;
-&lt;/SOAP-ENV:Envelope&gt;</code></pre>
+&lt;/SOAP-ENV:Envelope&gt;
+</code></pre>
 <h3 id="rest">REST</h3>
 <p>Beginners can assume a REST API means an HTTP service that can be called using standard web libraries and tools using JSON payloads.</p>
 <p>More info: <a href="https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/">https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/</a></p>
@@ -198,11 +210,13 @@ Content-Length: nnnn
   &quot;apikey&quot;: &quot;MW5TK02DUDMSH9A4&quot;,
   &quot;username&quot;: &quot;mega.boichetq&quot;,
   &quot;userkey&quot;: &quot;UA27FF66EENM8BSR&quot;
-}</code></pre>
+}
+</code></pre>
 <p>Response:</p>
 <pre><code class="language-json">{
   &quot;token&quot;: &quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3ODQyNTgsImlkIjoiIiwib3JpZ19pYXQiOjE1NTM2OTc4NTgsInVzZXJpZCI6NTEzNDk3LCJ1c2VybmFtZSI6Im1lZ2EuYm9pY2hldHEifQ.izEns8bjBUI6MHAPlVhWxfti-Ynyx6VxZbGnvTXONcPq-lW6R0ojGYtBUNs04SF4QYyPcn06lm5z9dmxs83Av3-ZdM6y-aeunuvY_ioy4VXpzJw5L_CiPmmQUTTGnHEAzJRlZodU18TGwMB_hAxwvEJD_BN1nhafU5ZvW43kL4KVh4PyG1N7Gh-ZZsPcKZRzI3nCIHVkfcp6RkNannbnABeAnLguDjvwfhOz3SQQtNfhc9WN0-OFrnP_IfpKJnQxGo0v7FxP8oSmFHCUqigDf8qlsMPJ3LfKJ7mB8AeN0Hh_q-oRU5Jnl-E-RZpPHLqeveTJcTIjfk-44V9SVHk3ow&quot;
-}</code></pre>
+}
+</code></pre>
 <h5 id="search">Search</h5>
 <p>GET <code>search/series</code></p>
 <p>Headers:</p>
@@ -226,7 +240,8 @@ Content-Length: nnnn
       &quot;status&quot;: &quot;Continuing&quot;
     }
   ]
-}</code></pre>
+}
+</code></pre>
 <h4 id="rest-is-a-set-of-rules-and-recommendations-not-actually-a-protocol">REST is a set of rules and recommendations, not actually a protocol.</h4>
 <p>REST determines how the API looks like. It stands for “Representational State Transfer”. It is a set of rules that developers follow when they create their API.</p>
 <p>Using different HTTP methods:</p>
@@ -264,7 +279,9 @@ Content-Length: nnnn
     name
     urlSlug
   }
-}</code></pre><p>GraphQL query result</p>
+}
+</code></pre>
+<p>GraphQL query result</p>
 <pre><code class="language-json">{
   &quot;data&quot;: {
     &quot;author&quot;: {
@@ -283,7 +300,8 @@ Content-Length: nnnn
       ]
     }
   }
-}</code></pre>
+}
+</code></pre>
 <h2 id="http-api-summary">HTTP API Summary</h2>
 <ul>
 <li><p>HTTP is a main transport protocol for the internet. It is widely used for every application: mobile, desktop, embedded or web.</p>

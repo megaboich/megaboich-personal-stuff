@@ -6,11 +6,18 @@
     <title>Creating OpenSocial gadget with Asp.Net MVC</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -22,8 +29,8 @@
     </script>
 
     <!-- Highlight js -->
-    <link rel="stylesheet" href="/assets/js/lib/highlight-js/styles/default.css">
-    <script src="/assets/js/lib/highlight-js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
@@ -55,8 +62,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -93,7 +100,7 @@
     </div>
 
     <br />
-</div><p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standart is also becoming popular<!--cut--> in corporate web portals sector. Currently such vendors as IBM, SAP, Cisco and many others have support for OpenSocial in theirs corporate products. All this success simply explained by the fact that OpenSocial allows quickly integrate gadgets to various of host portals.</p>
+</div><p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standard is also becoming popular in corporate web portals sector.<!--cut--> Currently such vendors as IBM, SAP, Cisco and many others have support for OpenSocial in theirs corporate products. All this success simply explained by the fact that OpenSocial allows quickly integrate gadgets to various of host portals.</p>
 <p>I will use Simple RSS reader Web application that I have created in previous article. I am going to implement OpenSocial integration, so I will able to put my gadget with RSS to any OpenSocial container.</p>
 <p>Requirements to gadget:</p>
 <ol>
@@ -112,7 +119,8 @@
         FeedSource = feedUrl,
         TopCount = topCount
     });
-}</code></pre>
+}
+</code></pre>
 <p>Then create view:</p>
 <pre><code class="language-csharp">@model SimpleRssReader.Models.RssWidgetModel
 @{
@@ -209,7 +217,8 @@
       setTitle: setTitle
     }
   });
-})(jQuery);</code></pre>
+})(jQuery);
+</code></pre>
 <p>In next step let&#39;s create controller action for dynamic Rss content:</p>
 <pre><code class="language-csharp">[JsonpMarkup]
 public ActionResult ViewHeadlines(string feedUrl, int topCount)
@@ -218,7 +227,8 @@ public ActionResult ViewHeadlines(string feedUrl, int topCount)
     var model = rssService.ReadFeed(feedUrl, topCount);
 
     return View(model);
-}</code></pre>
+}
+</code></pre>
 <p>And view:</p>
 <pre><code class="language-csharp">@model SimpleRssReader.Models.RssFeedContent
 @{
@@ -242,9 +252,12 @@ public ActionResult ViewHeadlines(string feedUrl, int topCount)
         &lt;/li&gt;
     }
     &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
 <p>At this point after compiling and fixing some minor problems there should be available working widget at url like this:</p>
-<pre><code> http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</code></pre><p>And you should get view like this in the browser:
+<pre><code> http://localhost/reader/RssReader/Widget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10
+</code></pre>
+<p>And you should get view like this in the browser:
 <img src="initialWidgetView_4.png" alt=""></p>
 <h2 id="create-gadget-xml">Create Gadget XML.</h2>
 <p>OpenSocial Gadget should be described in XML according to specification. To achieve this let&#39;s create Controller and View.</p>
@@ -270,7 +283,8 @@ namespace SimpleRssReader.Controllers
             return View(&quot;RssFeedGadget&quot;);
         }
     }
-}</code></pre>
+}
+</code></pre>
 <p>And this is View:</p>
 <pre><code class="language-csharp">@using System;
 @{
@@ -293,13 +307,18 @@ namespace SimpleRssReader.Controllers
 &lt;/Module&gt;
 @{
     Response.ContentType = &quot;text/xml&quot;;
-}</code></pre>
+}
+</code></pre>
 <p>This is OpenSocial Gadget Xml, and it contains all information to render gadget in container. Google have good <a href="http://code.google.com/intl/uk-UA/apis/gadgets/docs/gs.html">documentation</a> about this. <code>ModulePrefs</code> section contains copyright attributes and required features. <code>UserPref</code> sections contains user preferences that will be available to user. Access to this preferences is performed via OpenSocial Javascript API in WidgetHelper.js. Section <code>Content</code> is the container for HTML, CSS, Javascript. Here goes rendering of the Widget action.</p>
 <p>So, now you should have a working gadget XML available at url like this:</p>
-<pre><code>http://localhost/reader/OpenSocial/RssFeedGadget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10</code></pre><p><img src="gadgetXml_2.png" alt=""></p>
+<pre><code>http://localhost/reader/OpenSocial/RssFeedGadget?feedUrl=http%3A%2F%2Fnews.google.com%2Fnews%3Ftopic%3Db%26output%3Drss&amp;topCount=10
+</code></pre>
+<p><img src="gadgetXml_2.png" alt=""></p>
 <h2 id="deploy-gadget-to-container">Deploy gadget to container.</h2>
 <p><a href="http://www.liferay.com/downloads/liferay-portal/available-releases">LifeRay</a> portal is a good choice in order to test OpenSocial gadgets. Though it is written in Java this product is easy to install and run. You should have Java virtual machine on your test computer in order to run this portal. To install just extract zip archive and run:</p>
-<pre><code>liferay-portal-6.1.0\tomcat-7.0.21\bin\startup.bat</code></pre><p>Then tomcat web server will be run on port 8080 by default with Liferay portal. Looks impressive.</p>
+<pre><code>liferay-portal-6.1.0\tomcat-7.0.21\bin\startup.bat
+</code></pre>
+<p>Then tomcat web server will be run on port 8080 by default with Liferay portal. Looks impressive.</p>
 <p><img src="LiferayFirstStart_2.png" alt=""></p>
 <p>In order to add our fresh OpenSocial gadget to portal you need to login into LifeRay under administrator account. There are special quick login links o the main page. Press &quot;Login as Bruno&quot;. Then find menu in the top &quot;Add&quot;-&gt;&quot;More&quot;-&gt;&quot;Install More Applications&quot;. Scroll down, find &quot;Open Social&quot; link and click. Page should look similar to this:</p>
 <p><img src="LifeRayInsertGadgetUrl_2.png" alt=""></p>

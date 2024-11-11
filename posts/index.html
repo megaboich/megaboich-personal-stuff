@@ -6,11 +6,18 @@
     <title>Technical blog and experiments</title>
     <meta name="description" content="Oleksandr Boiko" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bulma/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <script type="text/javascript" src="/assets/js/scripts.js"></script>
-    <script type="text/javascript" src="/assets/js/youtube-renderer.js"></script>
-    <script type="text/javascript" src="/assets/js/soundcloud-renderer.js"></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@coderline/alphatab": "/assets/lib/alphatab/dist/alphaTab.min.mjs"
+            }
+        }
+    </script>
+
+    <script type="module" src="/assets/js/main.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70363755-1"></script>
@@ -51,8 +58,8 @@
                 <a class="navbar-item" href="/posts/">
                     Blog
                 </a>
-                <a class="navbar-item" href="/chords/">
-                    Chords
+                <a class="navbar-item" href="/songs/">
+                    Songs
                 </a>
             </div>
         </div>
@@ -202,7 +209,7 @@
                 </div>
                 <p>Recently I had a lots of interest in Javascript and decided to implement something funny and interesting.
 For me it was a problem of finding a way through the maze.
-So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star                <div>
+So, I searched a bit and found that this kind of problems are usually solved with path finding algorithms and one of those is A-Star.                <div>
                     <a class="has-text-primary" href="/posts/2013-06-11-Javascript-implementation-of-custom-AStar-Algorithm/">
                         Read more ->
                     </a>
@@ -348,7 +355,7 @@ So, I searched a bit and found that this kind of problems are usually solved wit
                 
                     <br />
                 </div>
-                <p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standart is also becoming popular                <div>
+                <p><a href="http://docs.opensocial.org/display/OS/Home">OpenSocial</a> is a great standard that allows implement Web-gadgets for various web-sites and portals (they are called OpenSocial Containers). Initially developed for Social Networks and driven by Google and <a href="http://code.google.com/apis/gadgets/">Google gadgets</a> this standard is also becoming popular in corporate web portals sector.                <div>
                     <a class="has-text-primary" href="/posts/2011-11-07-Creating-OpenSocial-gadget/">
                         Read more ->
                     </a>

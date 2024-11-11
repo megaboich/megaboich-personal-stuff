@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
   var _openList = [];
   var _closedList = [];
   var _currentCell = null;
